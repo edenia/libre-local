@@ -27,16 +27,6 @@ As EOS Mainnet Local Network is based on EOSIO protocol, some already smart cont
 3. atomicassets: AtomicAssets is a Non Fungible Token (NFT) standard for eosio blockchains developed by pink.network. Take a look at the smart contract code [here](https://github.com/pinknetworkx/atomicassets-contract).
 4. dgoods: dGoods is an open source and free standard for handling the virtual representation of items, both digital and physical, on the EOS blockchain led by Mythical Games. Take a look at the smart contract code [here](https://github.com/MythicalGames/dgoods).
 
-### Configuration key
-The preconfigured key to setup our genesis node is passed throw Dockerfile using the --build-arg option, so make sure to create a start key and save it to continue using the local dev environment with full access.
-
-To create a key, you can use `cleos create key --to-console`:
-
-```
-Private key: 5KQPgxtxWqziZggdsYjgMkBcd8iHr96HPY2kr4CGLqA7eid4FCG
-Public key: EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
-```
-
 ### Prerequisites
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
