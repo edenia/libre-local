@@ -21,7 +21,7 @@ RUN cd /app/eos/contracts/contracts/eosio.boot/ \
 COPY ./start.sh ./
 COPY ./config.ini ./config/
 COPY ./genesis.json ./
-COPY ./contracts/phoenix-contracts/build/contracts ./eosio.contracts
+COPY ./contracts/phoenix-contracts/build/contracts /eosio.contracts
 RUN cp -r /app/eos/contracts/contracts/eosio.boot/build /eosio.boot
 
 RUN chmod +x ./start.sh

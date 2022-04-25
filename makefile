@@ -5,7 +5,7 @@ VERSION ?= $(shell git rev-parse --short HEAD)
 
 run: ##@devops Run the docker image
 run:
-	make -B update-contract
+	make -B build-docker
 	make -B blockchain
 
 blockchain:
@@ -30,5 +30,5 @@ update-contract:
 	$(eval -include .env)
 	@echo "Update smart contract"
 	@rm -rf ./contracts
-	@git clone $(REPOSITORY_URL) ./contracts/phoenix-contracts
+	@git clone -b feat/libre $(REPOSITORY_URL) ./contracts/phoenix-contracts
 	@cd contracts/phoenix-contracts && ./build.sh -c /usr/local/eosio.cdt

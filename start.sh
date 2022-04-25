@@ -49,6 +49,7 @@ setup_accounts() {
     "eosio.token" \
     "eosio.vpay" \
     "eosio.rex" \
+    "eosio.libre" \
   )
 
   for account in "${accounts[@]}"; do
@@ -108,9 +109,12 @@ setup_contracts() {
   cleos set contract eosio.msig /eosio.contracts/eosio.msig/
   cleos push action eosio setpriv '["eosio.msig", 1]' -p eosio@active
 
-  cleos push action eosio.token create '[ "eosio", "10000000000.0000 EOS" ]' -p eosio.token@active
-  cleos push action eosio.token issue '[ "eosio", "1000000000.0000 EOS", "memo" ]' -p eosio@active
-  cleos push action eosio init '["0", "4,EOS"]' -p eosio@active
+  # Deploy eosio.libre contract
+  cleos set contract eosio.libre /eosio.contracts/eosio.libre/
+
+  cleos push action eosio.token create '[ "eosio", "10000000000 LIBRE" ]' -p eosio.token@active
+  cleos push action eosio.token issue '[ "eosio", "1000000000 LIBRE", "memo" ]' -p eosio@active
+  cleos push action eosio init '["0", "0,LIBRE"]' -p eosio@active
 
   lock_wallet
   echo "====================================== Done setup_contracts ======================================"
