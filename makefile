@@ -5,6 +5,11 @@ VERSION ?= $(shell git rev-parse --short HEAD)
 
 run: ##@devops Run the docker image
 run:
+	make -B update-contract
+	make -B blockchain
+
+blockchain:
+blockchain:
 	@docker-compose stop blockchain
 	@docker-compose up -d blockchain
 	@echo "done blockchain"
