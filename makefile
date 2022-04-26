@@ -30,5 +30,5 @@ update-contract:
 	$(eval -include .env)
 	@echo "Update smart contract"
 	@rm -rf ./contracts
-	@git clone -b feat/libre $(REPOSITORY_URL) ./contracts/phoenix-contracts
+	@git clone $(REPOSITORY_URL) ./contracts/phoenix-contracts
 	@cd contracts/phoenix-contracts && ./build.sh -c /usr/local/eosio.cdt
