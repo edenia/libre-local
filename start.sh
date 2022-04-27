@@ -126,6 +126,7 @@ start() {
   --config-dir config \
   --data-dir data \
   --blocks-dir blocks \
+  --signature-provider $TESTNET_EOSIO_PUBLIC_KEY=KEY:$TESTNET_EOSIO_PRIVATE_KEY \
   >> "nodeos.log" 2>&1 &
   sleep 10;
 
@@ -135,6 +136,7 @@ start() {
     --config-dir config \
     --data-dir data \
     --blocks-dir blocks \
+    --signature-provider $TESTNET_EOSIO_PUBLIC_KEY=KEY:$TESTNET_EOSIO_PRIVATE_KEY \
     --hard-replay-blockchain \
     >> "nodeos.log" 2>&1 & \
   fi
