@@ -49,6 +49,7 @@ setup_accounts() {
     "eosio.token" \
     "eosio.vpay" \
     "eosio.rex" \
+    "eosio.libre" \
   )
 
   for account in "${accounts[@]}"; do
@@ -97,10 +98,10 @@ setup_contracts() {
   cleos push action eosio activate '["299dcb6af692324b899b39f16d5a530a33062804e41f09dc97e9f156b4476707"]' -p eosio
   sleep 1
 
-  # Deploy system contract
-  cleos set code eosio /eosio.contracts/eosio.system/eosio.system.wasm
+  # Deploy bios contract
+  cleos set code eosio /eosio.contracts/libre.bios/libre.bios.wasm
   sleep 1
-  cleos set abi eosio /eosio.contracts/eosio.system/eosio.system.abi
+  cleos set abi eosio /eosio.contracts/libre.bios/libre.bios.abi
   sleep 1
 
   # Deploy eosio.token and eosio.msig contracts
@@ -108,9 +109,12 @@ setup_contracts() {
   cleos set contract eosio.msig /eosio.contracts/eosio.msig/
   cleos push action eosio setpriv '["eosio.msig", 1]' -p eosio@active
 
-  cleos push action eosio.token create '[ "eosio", "10000000000.0000 EOS" ]' -p eosio.token@active
-  cleos push action eosio.token issue '[ "eosio", "1000000000.0000 EOS", "memo" ]' -p eosio@active
-  cleos push action eosio init '["0", "4,EOS"]' -p eosio@active
+  # Deploy eosio.libre contract
+  cleos set contract eosio.libre /eosio.contracts/eosio.libre/
+
+  cleos push action eosio.token create '[ "eosio", "10000000000 LIBRE" ]' -p eosio.token@active
+  cleos push action eosio.token issue '[ "eosio", "1000000000 LIBRE", "memo" ]' -p eosio@active
+  cleos push action eosio init '["0", "0,LIBRE"]' -p eosio@active
 
   lock_wallet
   echo "====================================== Done setup_contracts ======================================"
@@ -122,6 +126,7 @@ start() {
   --config-dir config \
   --data-dir data \
   --blocks-dir blocks \
+  --signature-provider $TESTNET_EOSIO_PUBLIC_KEY=KEY:$TESTNET_EOSIO_PRIVATE_KEY \
   >> "nodeos.log" 2>&1 &
   sleep 10;
 
@@ -131,6 +136,7 @@ start() {
     --config-dir config \
     --data-dir data \
     --blocks-dir blocks \
+    --signature-provider $TESTNET_EOSIO_PUBLIC_KEY=KEY:$TESTNET_EOSIO_PRIVATE_KEY \
     --hard-replay-blockchain \
     >> "nodeos.log" 2>&1 & \
   fi
