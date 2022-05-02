@@ -98,10 +98,10 @@ setup_contracts() {
   cleos push action eosio activate '["299dcb6af692324b899b39f16d5a530a33062804e41f09dc97e9f156b4476707"]' -p eosio
   sleep 1
 
-  # Deploy bios contract
-  cleos set code eosio /eosio.contracts/libre.bios/libre.bios.wasm
+  # Deploy system contract
+  cleos set code eosio /eosio.contracts/libre.system/libre.system.wasm
   sleep 1
-  cleos set abi eosio /eosio.contracts/libre.bios/libre.bios.abi
+  cleos set abi eosio /eosio.contracts/libre.system/libre.system.abi
   sleep 1
 
   # Deploy eosio.token and eosio.msig contracts
