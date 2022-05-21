@@ -50,6 +50,7 @@ setup_accounts() {
     "eosio.vpay" \
     "eosio.rex" \
     "eosio.libre" \
+    "stake.libre" \
   )
 
   for account in "${accounts[@]}"; do
@@ -111,6 +112,9 @@ setup_contracts() {
 
   # Deploy eosio.libre contract
   cleos set contract eosio.libre /eosio.contracts/eosio.libre/
+  
+  # Deploy stake.libre contract
+  cleos set contract stake.libre /staking-contract/
 
   cleos push action eosio.token create '[ "eosio", "10000000000 LIBRE" ]' -p eosio.token@active
   cleos push action eosio.token issue '[ "eosio", "1000000000 LIBRE", "memo" ]' -p eosio@active

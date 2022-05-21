@@ -29,6 +29,14 @@ build-docker: ./Dockerfile
 update-contract:
 	$(eval -include .env)
 	@echo "Update smart contract"
-	@rm -rf ./contracts
+	@rm -rf ./contracts/phoenix-contracts
 	@git clone $(REPOSITORY_URL) ./contracts/phoenix-contracts
 	@cd contracts/phoenix-contracts && ./build.sh -c /usr/local/eosio.cdt
+
+update-staking-contract:
+	$(eval -include .env)
+	@echo "Update smart contract"
+	@rm -rf ./contracts/staking-contract
+	@git clone $(REPOSITOR_STAKING_CONTRACT_URL) ./contracts/staking-contract
+	@cd contracts/staking-contract && mkdir -p build
+	@cd contracts/staking-contract && eosio-cpp -I include -contract stakingtoken -o build/staking-contract.wasm src/stakingtoken.cpp
