@@ -22,6 +22,7 @@ COPY ./start.sh ./
 COPY ./config.ini ./config/
 COPY ./genesis.json ./
 COPY ./contracts/phoenix-contracts/build/contracts /eosio.contracts
+COPY ./contracts/staking-contract/build /staking-contract
 RUN cp -r /app/eos/contracts/contracts/eosio.boot/build /eosio.boot
 
 RUN chmod +x ./start.sh
