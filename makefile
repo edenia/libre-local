@@ -5,14 +5,21 @@ VERSION ?= $(shell git rev-parse --short HEAD)
 
 run: ##@devops Run the docker image
 run:
-	make -B build-docker
-	make -B blockchain
+	# make compile
+	# make -B build-docker
+	make -B -j 2 bp1 bp2
 
-blockchain:
-blockchain:
-	@docker-compose stop blockchain
-	@docker-compose up -d blockchain
-	@echo "done blockchain"
+bp1:
+bp1:
+	@docker-compose stop bp1
+	@docker-compose up -d --build bp1
+	@echo "done bp1"
+
+bp2:
+bp2:
+	@docker-compose stop bp2
+	@docker-compose up -d --build bp2
+	@echo "done bp2"
 
 build-docker: ##@devops Build the docker image
 build-docker: ./Dockerfile
@@ -38,5 +45,16 @@ update-staking-contract:
 	@echo "Update smart contract"
 	@rm -rf ./contracts/staking-contract
 	@git clone $(REPOSITOR_STAKING_CONTRACT_URL) ./contracts/staking-contract
+	@cd contracts/staking-contract && mkdir -p build
+	@cd contracts/staking-contract && eosio-cpp -I include -contract stakingtoken -o build/staking-contract.wasm src/stakingtoken.cpp
+
+compile:
+	@make compile-system-contract
+	@make compile-staking-contract
+
+compile-system-contract:
+	@cd contracts/phoenix-contracts && ./build.sh -c /usr/local/eosio.cdt
+
+compile-staking-contract:
 	@cd contracts/staking-contract && mkdir -p build
 	@cd contracts/staking-contract && eosio-cpp -I include -contract stakingtoken -o build/staking-contract.wasm src/stakingtoken.cpp

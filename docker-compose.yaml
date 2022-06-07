@@ -1,10 +1,26 @@
 version: '3.6'
 services:
-  blockchain:
-    container_name: blockchain
+  bp1:
+    container_name: cryptobloksx
+    build: ./nodes/bp1
     image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
     ports:
       - '8888:8888'
+      - '9876:9876'
+      - '9879:9879'
+    working_dir: /app
+    command: bash -c "./start.sh"
+    environment:
+      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
+      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+  bp2:
+    container_name: edeniaedenia
+    build: ./nodes/bp2
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}2
+    ports:
+      - '8890:8888'
+      - '9880:9876'
+      - '9881:9879'
     working_dir: /app
     command: bash -c "./start.sh"
     environment:
