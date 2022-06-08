@@ -1,8 +1,8 @@
 version: '3.6'
 services:
-  bp1:
-    container_name: cryptobloksx
-    build: ./nodes/bp1
+  genesis:
+    container_name: genesis
+    build: ./nodes/genesis
     image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
     ports:
       - '8888:8888'
@@ -13,15 +13,28 @@ services:
     environment:
       TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
       TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
-  bp2:
-    container_name: edeniaedenia
-    build: ./nodes/bp2
+  cryptobloksx:
+    container_name: cryptobloksx
+    build: ./nodes/cryptobloksx
     image: ${DOCKER_REGISTRY}/${IMAGE_NAME}2
     ports:
       - '8890:8888'
       - '9880:9876'
       - '9881:9879'
-    working_dir: /app
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
+      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+  edeniaedenia:
+    container_name: edeniaedenia
+    build: ./nodes/edeniaedenia
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}3
+    ports:
+      - '8891:8888'
+      - '9882:9876'
+      - '9883:9879'
+    working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
       TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'

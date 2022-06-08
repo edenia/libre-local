@@ -7,19 +7,27 @@ run: ##@devops Run the docker image
 run:
 	# make compile
 	# make -B build-docker
-	make -B -j 2 bp1 bp2
+	make -B genesis
+	make -B cryptobloksx
+	make -B edeniaedenia
 
-bp1:
-bp1:
-	@docker-compose stop bp1
-	@docker-compose up -d --build bp1
-	@echo "done bp1"
+genesis:
+genesis:
+	@docker-compose stop genesis
+	@docker-compose up -d --build genesis
+	@echo "done genesis"
 
-bp2:
-bp2:
-	@docker-compose stop bp2
-	@docker-compose up -d --build bp2
-	@echo "done bp2"
+cryptobloksx:
+cryptobloksx:
+	@docker-compose stop cryptobloksx
+	@docker-compose up -d --build cryptobloksx
+	@echo "done cryptobloksx"
+
+edeniaedenia:
+edeniaedenia:
+	@docker-compose stop edeniaedenia
+	@docker-compose up -d --build edeniaedenia
+	@echo "done edeniaedenia"
 
 build-docker: ##@devops Build the docker image
 build-docker: ./Dockerfile
