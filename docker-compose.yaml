@@ -8,6 +8,9 @@ services:
       - '8888:8888'
       - '9876:9876'
       - '9879:9879'
+    volumes:
+      - ./contracts/phoenix-contracts/build/contracts:/eosio.contracts
+      - ./contracts/staking-contract/build:/staking-contract
     working_dir: /app
     command: bash -c "./start.sh"
     environment:

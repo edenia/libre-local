@@ -5,7 +5,7 @@ VERSION ?= $(shell git rev-parse --short HEAD)
 
 run: ##@devops Run the docker image
 run:
-	# make compile
+	make compile
 	# make -B build-docker
 	make -B genesis
 	make -B cryptobloksx

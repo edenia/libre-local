@@ -11,12 +11,21 @@ setup() {
 
     cleos create account eosio stakingtest1 EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
     cleos create account eosio stakingtest2 EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
+    cleos create account eosio stakingtest3 EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
+    cleos create account eosio stakingtest4 EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
+    cleos create account eosio stakingtest5 EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
     cleos push action eosio.token transfer '{"from": "eosio", "to": "stakingtest1", "quantity": "100000 LIBRE", "memo": "faucet"}' -p eosio@active
     cleos push action eosio.token transfer '{"from": "eosio", "to": "stakingtest2", "quantity": "100000 LIBRE", "memo": "faucet"}' -p eosio@active
+    cleos push action eosio.token transfer '{"from": "eosio", "to": "stakingtest3", "quantity": "100000 LIBRE", "memo": "faucet"}' -p eosio@active
+    cleos push action eosio.token transfer '{"from": "eosio", "to": "stakingtest4", "quantity": "100000 LIBRE", "memo": "faucet"}' -p eosio@active
+    cleos push action eosio.token transfer '{"from": "eosio", "to": "stakingtest5", "quantity": "100000 LIBRE", "memo": "faucet"}' -p eosio@active
 
     # Stake
     cleos push action eosio.token transfer '{"from": "stakingtest1", "to": "stake.libre", "quantity": "100 LIBRE", "memo": "stakefor:365"}' -p stakingtest1@active
-    cleos push action eosio.token transfer '{"from": "stakingtest2", "to": "stake.libre", "quantity": "100 LIBRE", "memo": "stakefor:365"}' -p stakingtest2@active
+    cleos push action eosio.token transfer '{"from": "stakingtest2", "to": "stake.libre", "quantity": "150 LIBRE", "memo": "stakefor:365"}' -p stakingtest2@active
+    cleos push action eosio.token transfer '{"from": "stakingtest3", "to": "stake.libre", "quantity": "200 LIBRE", "memo": "stakefor:365"}' -p stakingtest3@active
+    cleos push action eosio.token transfer '{"from": "stakingtest4", "to": "stake.libre", "quantity": "250 LIBRE", "memo": "stakefor:365"}' -p stakingtest4@active
+    cleos push action eosio.token transfer '{"from": "stakingtest5", "to": "stake.libre", "quantity": "300 LIBRE", "memo": "stakefor:365"}' -p stakingtest5@active
 }
 
 stake() {
@@ -72,13 +81,13 @@ add_producer2() {
 }
 
 add_producers() {
-    cleos create account eosio cryptobloksx EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
-    cleos push action eosio.libre setperm '{"acc": "cryptobloksx", "perms": [["createacc",1],["regprod",1]]}' -p eosio.libre@active
-    cleos push action eosio regproducer '{"producer": "cryptobloksx", "producer_key": "EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna", "url": "url removed", "location": 123}' -p cryptobloksx@active
+    # cleos create account eosio cryptobloksx EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
+    # cleos push action eosio.libre setperm '{"acc": "cryptobloksx", "perms": [["createacc",1],["regprod",1]]}' -p eosio.libre@active
+    # cleos push action eosio regproducer '{"producer": "cryptobloksx", "producer_key": "EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna", "url": "url removed", "location": 123}' -p cryptobloksx@active
     
-    # cleos create account eosio edeniaedenia EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
-    # cleos push action eosio.libre setperm '{"acc": "edeniaedenia", "perms": [["createacc",1],["regprod",1]]}' -p eosio.libre@active
-    # cleos push action eosio regproducer '{"producer": "edeniaedenia", "producer_key": "EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna", "url": "url removed", "location": 123}' -p edeniaedenia@active
+    cleos create account eosio edeniaedenia EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
+    cleos push action eosio.libre setperm '{"acc": "edeniaedenia", "perms": [["createacc",1],["regprod",1]]}' -p eosio.libre@active
+    cleos push action eosio regproducer '{"producer": "edeniaedenia", "producer_key": "EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna", "url": "url removed", "location": 123}' -p edeniaedenia@active
 
     # cleos create account eosio zenhash EOS6SpGqFohbAHZHK3cDTT7oKyQedwXd4nZ6H6t9PKk2UN5hqNbna
     # cleos push action eosio.libre setperm '{"acc": "zenhash", "perms": [["createacc",1],["regprod",1]]}' -p eosio.libre@active
@@ -90,7 +99,7 @@ add_producers() {
 }
 
 vote_producers() {
-    cleos push action eosio voteproducer '{"voter": "stakingtest1", "producer": "cryptobloksx"}' -p stakingtest1@active
+    # cleos push action eosio voteproducer '{"voter": "stakingtest1", "producer": "cryptobloksx"}' -p stakingtest1@active
     cleos push action eosio voteproducer '{"voter": "stakingtest2", "producer": "edeniaedenia"}' -p stakingtest2@active
 }
 
