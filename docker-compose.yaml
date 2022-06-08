@@ -42,3 +42,29 @@ services:
     environment:
       TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
       TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+  zenhash:
+    container_name: zenhash
+    build: ./nodes/zenhash
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}3
+    ports:
+      - '8892:8888'
+      - '9884:9876'
+      - '9885:9879'
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
+      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+  zuexeuz:
+    container_name: zuexeuz
+    build: ./nodes/zuexeuz
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}3
+    ports:
+      - '8893:8888'
+      - '9886:9876'
+      - '9887:9879'
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
+      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'

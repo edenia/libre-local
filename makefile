@@ -10,6 +10,8 @@ run:
 	make -B genesis
 	make -B cryptobloksx
 	make -B edeniaedenia
+	make -B zenhash
+	make -B zuexeuz
 
 genesis:
 genesis:
@@ -28,6 +30,18 @@ edeniaedenia:
 	@docker-compose stop edeniaedenia
 	@docker-compose up -d --build edeniaedenia
 	@echo "done edeniaedenia"
+
+zenhash:
+zenhash:
+	@docker-compose stop zenhash
+	@docker-compose up -d --build zenhash
+	@echo "done zenhash"
+
+zuexeuz:
+zuexeuz:
+	@docker-compose stop zuexeuz
+	@docker-compose up -d --build zuexeuz
+	@echo "done zuexeuz"
 
 build-docker: ##@devops Build the docker image
 build-docker: ./Dockerfile
