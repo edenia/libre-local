@@ -55,7 +55,7 @@ build-docker: ./Dockerfile
 		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME) \
 		.
 
-update-contract:
+update-system-contract:
 	$(eval -include .env)
 	@echo "Update smart contract"
 	@rm -rf ./contracts/phoenix-contracts

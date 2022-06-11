@@ -27,8 +27,8 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
-      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+      TESTNET_NODE_PRIVATE_KEY: '${TESTNET_NODE_PRIVATE_KEY}'
+      TESTNET_NODE_PUBLIC_KEY: '${TESTNET_NODE_PUBLIC_KEY}'
   edeniaedenia:
     container_name: edeniaedenia
     build: ./nodes/edeniaedenia
@@ -40,8 +40,8 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
-      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+      TESTNET_NODE2_PRIVATE_KEY: '${TESTNET_NODE2_PRIVATE_KEY}'
+      TESTNET_NODE2_PUBLIC_KEY: '${TESTNET_NODE2_PUBLIC_KEY}'
   zenhash:
     container_name: zenhash
     build: ./nodes/zenhash
@@ -53,8 +53,8 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
-      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+      TESTNET_NODE3_PRIVATE_KEY: '${TESTNET_NODE3_PRIVATE_KEY}'
+      TESTNET_NODE3_PUBLIC_KEY: '${TESTNET_NODE3_PUBLIC_KEY}'
   zuexeuz:
     container_name: zuexeuz
     build: ./nodes/zuexeuz
@@ -66,5 +66,5 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_EOSIO_PRIVATE_KEY: '${TESTNET_EOSIO_PRIVATE_KEY}'
-      TESTNET_EOSIO_PUBLIC_KEY: '${TESTNET_EOSIO_PUBLIC_KEY}'
+      TESTNET_NODE4_PRIVATE_KEY: '${TESTNET_NODE4_PRIVATE_KEY}'
+      TESTNET_NODE4_PUBLIC_KEY: '${TESTNET_NODE4_PUBLIC_KEY}'

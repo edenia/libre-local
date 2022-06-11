@@ -13,7 +13,7 @@ nodeos=$"nodeos \
   --config-dir $CONFIG_DIR \
   --data-dir $DATA_DIR \
   --blocks-dir $DATA_DIR/blocks \
-  --signature-provider $TESTNET_EOSIO_PUBLIC_KEY=KEY:$TESTNET_EOSIO_PRIVATE_KEY" ;
+  --signature-provider $TESTNET_NODE4_PUBLIC_KEY=KEY:$TESTNET_NODE4_PRIVATE_KEY" ;
 
 term_handler() {
   if [ $pid -ne 0 ]; then
@@ -25,13 +25,13 @@ term_handler() {
 
 start_nodeos() {
   $nodeos &
-  sleep 20;
+  sleep 10;
   if [ -z "$(pidof nodeos)" ]; then
     $nodeos --fix-reversible-blocks &
     rm -rf $DATA_DIR/state
     $nodeos &
   fi
-  sleep 20;
+  sleep 10;
   if [ -z "$(pidof nodeos)" ]; then
     $nodeos --hard-replay-blockchain &
   fi
@@ -45,7 +45,7 @@ start_fresh_nodeos() {
 trap 'echo "Shutdown of EOSIO service...";kill ${!}; term_handler' 2 15;
 
 # Validate that the signing keys are not empty
-if [ -z "$TESTNET_EOSIO_PUBLIC_KEY" ] || [ -z "$TESTNET_EOSIO_PRIVATE_KEY" ]
+if [ -z "$TESTNET_NODE4_PUBLIC_KEY" ] || [ -z "$TESTNET_NODE4_PRIVATE_KEY" ]
 then
   echo "Signing keys not set...";
   exit 1;
