@@ -5,14 +5,43 @@ VERSION ?= $(shell git rev-parse --short HEAD)
 
 run: ##@devops Run the docker image
 run:
-	make -B build-docker
-	make -B blockchain
+	make compile
+	# make -B build-docker
+	make -B genesis
+	make -B cryptobloksx
+	make -B edeniaedenia
+	make -B zenhash
+	make -B zuexeuz
 
-blockchain:
-blockchain:
-	@docker-compose stop blockchain
-	@docker-compose up -d blockchain
-	@echo "done blockchain"
+genesis:
+genesis:
+	@docker-compose stop genesis
+	@docker-compose up -d --build genesis
+	@echo "done genesis"
+
+cryptobloksx:
+cryptobloksx:
+	@docker-compose stop cryptobloksx
+	@docker-compose up -d --build cryptobloksx
+	@echo "done cryptobloksx"
+
+edeniaedenia:
+edeniaedenia:
+	@docker-compose stop edeniaedenia
+	@docker-compose up -d --build edeniaedenia
+	@echo "done edeniaedenia"
+
+zenhash:
+zenhash:
+	@docker-compose stop zenhash
+	@docker-compose up -d --build zenhash
+	@echo "done zenhash"
+
+zuexeuz:
+zuexeuz:
+	@docker-compose stop zuexeuz
+	@docker-compose up -d --build zuexeuz
+	@echo "done zuexeuz"
 
 build-docker: ##@devops Build the docker image
 build-docker: ./Dockerfile
@@ -26,7 +55,7 @@ build-docker: ./Dockerfile
 		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME) \
 		.
 
-update-contract:
+update-system-contract:
 	$(eval -include .env)
 	@echo "Update smart contract"
 	@rm -rf ./contracts/phoenix-contracts
@@ -38,5 +67,16 @@ update-staking-contract:
 	@echo "Update smart contract"
 	@rm -rf ./contracts/staking-contract
 	@git clone $(REPOSITOR_STAKING_CONTRACT_URL) ./contracts/staking-contract
+	@cd contracts/staking-contract && mkdir -p build
+	@cd contracts/staking-contract && eosio-cpp -I include -contract stakingtoken -o build/staking-contract.wasm src/stakingtoken.cpp
+
+compile:
+	@make compile-system-contract
+	@make compile-staking-contract
+
+compile-system-contract:
+	@cd contracts/phoenix-contracts && ./build.sh -c /usr/local/eosio.cdt
+
+compile-staking-contract:
 	@cd contracts/staking-contract && mkdir -p build
 	@cd contracts/staking-contract && eosio-cpp -I include -contract stakingtoken -o build/staking-contract.wasm src/stakingtoken.cpp

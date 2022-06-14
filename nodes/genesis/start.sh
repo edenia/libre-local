@@ -51,6 +51,7 @@ setup_accounts() {
     "eosio.rex" \
     "eosio.libre" \
     "stake.libre" \
+    "bp2" \
   )
 
   for account in "${accounts[@]}"; do
