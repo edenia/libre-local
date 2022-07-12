@@ -5,7 +5,7 @@ Libre Local provides a quick way to setup a Local Testnet network for developmen
 
 The primary benefits of containers are consistency across different environments and deployment ease.
 
-This project works along with a [full-stack-boilerplate](https://github.com/eoscostarica/full-stack-boilerplate) to help you build your EOS dApp.
+This project works along with a [full-stack-boilerplate](https://github.com/eoscostarica/full-stack-boilerplate) to help you build your EOSIO dApp.
 
 ### Why to use a local environment?
 Having a local environment provides a series of benefits that you cannot in a public network, for example, with Libre locally, transaction costs are avoided since they are carried out in a development environment and not in production, also, they are accessed to system contracts to modify them as appropriate.
