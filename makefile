@@ -47,9 +47,7 @@ build-docker: ##@devops Build the docker image
 build-docker: ./Dockerfile
 	echo "Building docker container ..."
 	$(eval -include .env)
-
 	@echo $(SSH_PRIVATE_KEY)
-	
 	@docker build \
 		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME) \
 		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME) \
@@ -80,3 +78,6 @@ compile-system-contract:
 compile-staking-contract:
 	@cd contracts/staking-contract && mkdir -p build
 	@cd contracts/staking-contract && eosio-cpp -I include -contract stakingtoken -o build/staking-contract.wasm src/stakingtoken.cpp
+
+stop:
+	@docker-compose stop
