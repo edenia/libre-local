@@ -1,14 +1,14 @@
-# Phoenix Testnet Local Network
+# Libre Local Network
 
 ## Description
-Phoenix Testnet Local provides a quick way to setup a Local Testnet network for development.
+Libre Local provides a quick way to setup a Local Testnet network for development.
 
 The primary benefits of containers are consistency across different environments and deployment ease.
 
 This project works along with a [full-stack-boilerplate](https://github.com/eoscostarica/full-stack-boilerplate) to help you build your EOS dApp.
 
 ### Why to use a local environment?
-Having a local environment provides a series of benefits that you cannot in a public network, for example, with Phoenix locally, transaction costs are avoided since they are carried out in a development environment and not in production, also, they are accessed to system contracts to modify them as appropriate.
+Having a local environment provides a series of benefits that you cannot in a public network, for example, with Libre locally, transaction costs are avoided since they are carried out in a development environment and not in production, also, they are accessed to system contracts to modify them as appropriate.
 
 In a Blockchain network every transaction creates an immutable record and everything that is modified can affect both positively and negatively the users within it, it is for this reason that it is essential to have an environment premises where functionality tests, performance tests, stress tests, among others, can be carried out without the risk of producing a failure that affects users.
 
@@ -21,7 +21,7 @@ The EOSIO image is based on the `eosio.system`, `eosio.token` and `eosio.msig` c
 3. **eosio.msig**: Allows the creation of proposed transactions that require authorization from a list of accounts.
 
 ### Deployable projects
-As Phoenix Local Network is based on EOSIO protocol, some already smart contract production projects can be deployed on our local network due to the local dev environment setup. Some of them are:
+As Libre Local Network is based on EOSIO protocol, some already smart contract production projects can be deployed on our local network due to the local dev environment setup. Some of them are:
 1. Eden: Take a look at the smart contract code [here](https://github.com/eoscommunity/Eden/tree/main/contracts).
 2. simpleassets: A simple standard for digital assets on EOSIO blockchains: Non-Fungible Tokens (NFTs), Fungible Tokens (FTs), and Non-Transferable Tokens (NTTs). Take a look at the smart contract code [here](https://github.com/CryptoLions/SimpleAssets).
 3. atomicassets: AtomicAssets is a Non Fungible Token (NFT) standard for eosio blockchains developed by pink.network. Take a look at the smart contract code [here](https://github.com/pinknetworkx/atomicassets-contract).
@@ -56,18 +56,18 @@ Public key: EOS7tJAV8DPN5Q3byKeKzWax6BDmPbWN1i64YaDAr7g8NhPDPKcfN
 
 > Don't use these keys in production environments, as it's just for easy getting started.
 
-## Instructions for creating Phoenix Local Network image locally
+## Instructions for creating Libre Local Network image locally
 To create the Docker image locally, you must run the following commands:
-- Clone the local Eos repository `https://github.com/eoscostarica/phoenix-local`
-- Enter to the cloned repository folder `cd <path/phoenix-local>`
-- Build the Dockerfile image with env variables `make build-docker` or `docker build -t phoenix-local --build-arg testnet_eosio_public_key="<public_key>" --build-arg testnet_eosio_private_key="<private_key>" .`
-- Run the Dockerfile image `make run` or `docker run -dp 8888:8888 phoenix-local`
+- Clone the local Eos repository `https://github.com/eoscostarica/libre-local`
+- Enter to the cloned repository folder `cd <path/libre-local>`
+- Build the Dockerfile image with env variables `make build-docker` or `docker build -t libre-local --build-arg testnet_eosio_public_key="<public_key>" --build-arg testnet_eosio_private_key="<private_key>" .`
+- Run the Dockerfile image `make run` or `docker run -dp 8888:8888 libre-local`
 - Run the command `cleos get info` or check the link in the browser `http://127.0.0.1:8888/v1/chain/get_info`
 
-By this point, you already have the Phoenix Local Network image running locally.
+By this point, you already have the Libre Local Network image running locally.
 
 ## File structure
-```text title="./phoenix-local"
+```text title="./libre-local"
 /
 .
 ├── .github
@@ -75,7 +75,7 @@ By this point, you already have the Phoenix Local Network image running locally.
 │       └── publish-docker-image.yml
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
-├── Dockerfile ............... Contains instructions for building the Phoenix Local Network image
+├── Dockerfile ............... Contains instructions for building the Libre Local Network image
 ├── LICENSE .................. Terms and Conditions
 ├── README.md ................ Repository specification
 ├── config.ini ............... Nodeos configuration file
@@ -85,9 +85,6 @@ By this point, you already have the Phoenix Local Network image running locally.
 ├── makefile ................. Shell commands
 └── start.sh ................. Instructions for configuring contracts and usage characteristics
 ```
-
-## License
-MIT © [EOS Costa Rica](https://eoscostarica.io/)
 
 ## Contributing
 If you want to contribute to this repository, please follow the steps below:
@@ -100,19 +97,20 @@ If you want to contribute to this repository, please follow the steps below:
 
 Read the EOS Costa Rica open source [contribution guidelines](https://guide.eoscostarica.io/docs/open-source-guidelines/) for more information on scheduling conventions.
 
-If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/phoenix-local/issues).
-
+If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/libre-local/issues).
 
 ## What is EOSIO?
 EOSIO is a highly performant open-source blockchain platform, built to support and operate safe, compliant, and predictable digital infrastructures.
 
-## About EOS Costa Rica
-<br>
-<center>
-<img src="https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-horizontal-transparent-white.png" width="400" >
-</center>
-<br>
+<span align="center">
 
-EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides stable and secure infrastructure for EOSIO blockchains. We support open source software for our community while offering enterprise solutions and custom smart contract development for our clients.
+<a href="https://edenia.com"><img width="400" alt="image" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img></a>
 
-[eoscostarica.io](https://eoscostarica.io/)
+[![Twitter](https://img.shields.io/twitter/follow/EdeniaWeb3?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
+![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=discord&logo=discord&logoColor=white&style=for-the-badge)
+
+Edenia runs independent blockchain infrastructure and develops web3 solutions. Our team of technology-agnostic builders has been operating since 1987, leveraging the newest technologies to make the internet safer, more efficient, and more transparent.
+
+
+[edenia.com](https://edenia.com)
+</span>
