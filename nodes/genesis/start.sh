@@ -39,7 +39,7 @@ setup_accounts() {
   echo "====================================== Start setup_accounts ======================================"
   unlock_wallet
   accounts=( \
-    "eosio.bpay" \
+    "bpay.libre" \
     "eosio.msig" \
     "eosio.names" \
     "eosio.ram" \
@@ -47,7 +47,6 @@ setup_accounts() {
     "eosio.saving" \
     "eosio.stake" \
     "eosio.token" \
-    "eosio.vpay" \
     "eosio.rex" \
     "eosio.libre" \
     "stake.libre" \
@@ -117,9 +116,9 @@ setup_contracts() {
   # Deploy stake.libre contract
   cleos set contract stake.libre /staking-contract/
 
-  cleos push action eosio.token create '[ "eosio", "10000000000 LIBRE" ]' -p eosio.token@active
-  cleos push action eosio.token issue '[ "eosio", "1000000000 LIBRE", "memo" ]' -p eosio@active
-  cleos push action eosio init '["0", "0,LIBRE"]' -p eosio@active
+  cleos push action eosio.token create '[ "eosio", "10000000000.0000 LIBRE" ]' -p eosio.token@active
+  cleos push action eosio.token issue '[ "eosio", "1000000000.0000 LIBRE", "memo" ]' -p eosio@active
+  cleos push action eosio init '["0", "4,LIBRE"]' -p eosio@active
 
   lock_wallet
   echo "====================================== Done setup_contracts ======================================"
