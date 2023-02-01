@@ -47,10 +47,18 @@ setup_accounts() {
     "eosio.saving" \
     "eosio.stake" \
     "eosio.token" \
+    "btc.ptokens" \
+    "usdt.ptokens" \
     "eosio.rex" \
     "eosio.libre" \
+    
     "stake.libre" \
-    "bp2" \
+    "dao.libre" \
+    "accts.libre" \
+    "farm.libre" \
+    "reward.libre" \
+    "swap.libre" \
+    "sfee.libre" \
   )
 
   for account in "${accounts[@]}"; do
@@ -100,6 +108,7 @@ setup_contracts() {
   sleep 1
 
   # Deploy system contract
+  echo "-----------------> UPDATE EOSIO <-----------------"
   cleos set code eosio /eosio.contracts/libre.system/libre.system.wasm
   sleep 1
   cleos set abi eosio /eosio.contracts/libre.system/libre.system.abi
@@ -107,6 +116,8 @@ setup_contracts() {
 
   # Deploy eosio.token and eosio.msig contracts
   cleos set contract eosio.token /eosio.contracts/eosio.token/
+  cleos set contract btc.ptokens /eosio.contracts/eosio.token/
+  cleos set contract usdt.ptokens /eosio.contracts/eosio.token/
   cleos set contract eosio.msig /eosio.contracts/eosio.msig/
   cleos push action eosio setpriv '["eosio.msig", 1]' -p eosio@active
 
@@ -114,10 +125,22 @@ setup_contracts() {
   cleos set contract eosio.libre /eosio.contracts/eosio.libre/
   
   # Deploy stake.libre contract
-  cleos set contract stake.libre /staking-contract/
+  cleos set contract stake.libre /staking-contract stakingtoken.wasm stakingtoken.abi
+  cleos set contract dao.libre /btclgovernan/
+  cleos set contract accts.libre /referral/
+  cleos set contract farm.libre /staking-contract farming.wasm farming.abi
+  cleos set contract reward.libre /staking-contract reward.wasm reward.abi
+  cleos set contract swap.libre /swap swap.libre.wasm swap.libre.abi
+  cleos set contract sfee.libre /swap sfee.libre.wasm sfee.libre.abi
 
   cleos push action eosio.token create '[ "eosio", "10000000000.0000 LIBRE" ]' -p eosio.token@active
   cleos push action eosio.token issue '[ "eosio", "1000000000.0000 LIBRE", "memo" ]' -p eosio@active
+
+  cleos push action btc.ptokens create '[ "eosio", "100000000.000000000 PBTC" ]' -p btc.ptokens@active
+  cleos push action btc.ptokens issue '[ "eosio", "10000000.000000000 PBTC", "memo" ]' -p eosio@active
+
+  cleos push action usdt.ptokens create '[ "eosio", "100000000.000000000 PUSDT" ]' -p usdt.ptokens@active
+  cleos push action usdt.ptokens issue '[ "eosio", "10000000.000000000 PUSDT", "memo" ]' -p eosio@active
   cleos push action eosio init '["0", "4,LIBRE"]' -p eosio@active
 
   lock_wallet
