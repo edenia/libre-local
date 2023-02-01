@@ -6,7 +6,7 @@ fi
 
 CUSTOM_ACCOUNTS=(alice bob pip bitcoinlibre)
 MAIN_ACCOUNTS=(stake.libre farm.libre reward.libre dao.libre)
-BLOCK_PRODUCERS=(cryptobloksx edeniaedenia zenhash zuexeuz)
+BLOCK_PRODUCERS=(bp2 bp3 bp4 bp5)
 BLOCK_PRODUCERS_KEYS=($TESTNET_NODE_PUBLIC_KEY $TESTNET_NODE2_PUBLIC_KEY $TESTNET_NODE3_PUBLIC_KEY $TESTNET_NODE4_PUBLIC_KEY)
 
 register_bps() {
@@ -19,17 +19,17 @@ register_bps() {
 }
 
 vote_producers() {
-    cleos push action eosio voteproducer '{"voter": "stakingte111", "producer": "cryptobloksx"}' -p stakingte111@active
-    cleos push action eosio voteproducer '{"voter": "stakingte112", "producer": "edeniaedenia"}' -p stakingte112@active
-    cleos push action eosio voteproducer '{"voter": "stakingte113", "producer": "zenhash"}' -p stakingte113@active
-    cleos push action eosio voteproducer '{"voter": "stakingte114", "producer": "zuexeuz"}' -p stakingte114@active
-    cleos push action eosio voteproducer '{"voter": "stakingte115", "producer": "cryptobloksx"}' -p stakingte115@active
+    cleos push action eosio voteproducer '{"voter": "stakingte111", "producer": "bp2"}' -p stakingte111@active
+    cleos push action eosio voteproducer '{"voter": "stakingte112", "producer": "bp3"}' -p stakingte112@active
+    cleos push action eosio voteproducer '{"voter": "stakingte113", "producer": "bp4"}' -p stakingte113@active
+    cleos push action eosio voteproducer '{"voter": "stakingte114", "producer": "bp5"}' -p stakingte114@active
+    cleos push action eosio voteproducer '{"voter": "stakingte115", "producer": "bp2"}' -p stakingte115@active
 }
 
 create_accounts() {
     echo "Start create accounts..."
     for account in ${CUSTOM_ACCOUNTS[*]}; do
-        cleos create account eosio "$account" $DEFAULT_PK
+        cleos create account eosio "$account" $DEFAULT_PUBLIC_KEY
         cleos push action eosio setalimits '{"authorizer": "eosio", "account": '"$account"', "ram": 10000000, "net": 2000, "cpu": 2000}' -p eosio@active
     done
     echo "Finish create accounts..."
@@ -67,7 +67,7 @@ fully_create_aux_accounts() {
             for k in {1..5}
             do
                 # create account
-                cleos create account eosio stakingte$i$j$k $DEFAULT_PK
+                cleos create account eosio stakingte$i$j$k $DEFAULT_PUBLIC_KEY
                 cleos push action eosio setalimits '{"authorizer": "eosio", "account": '"stakingte$i$j$k"', "ram": 9000000, "net": 2000, "cpu": 2000}' -p eosio@active
 
                 # fund account

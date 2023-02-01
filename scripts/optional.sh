@@ -12,12 +12,12 @@ claim() {
 }
 
 remove_producer() {
-    cleos push action eosio rmvproducer '{"producer":"cryptobloksx"}' -p eosio@active
+    cleos push action eosio rmvproducer '{"producer":"bp2"}' -p eosio@active
 }
 
 claim_rewards() {
-    cleos push action eosio claimrewards '{"owner": "cryptobloksx"}' -p cryptobloksx@active
-    cleos push action eosio claimrewards '{"owner": "edeniaedenia"}' -p edeniaedenia@active
-    cleos push action eosio claimrewards '{"owner": "zenhash"}' -p zenhash@active
-    cleos push action eosio claimrewards '{"owner": "zuexeuz"}' -p zuexeuz@active
+    cleos push action eosio claimrewards '{"owner": "bp2"}' -p bp2@active
+    cleos push action eosio claimrewards '{"owner": "bp3"}' -p bp3@active
+    cleos push action eosio claimrewards '{"owner": "bp4"}' -p bp4@active
+    cleos push action eosio claimrewards '{"owner": "bp5"}' -p bp5@active
 }
