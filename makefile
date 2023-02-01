@@ -4,7 +4,6 @@ DOCKER_REGISTRY=eoscostarica506
 VERSION ?= $(shell git rev-parse --short HEAD)
 
 run: ##@devops Run the docker image
-	# make -B build-docker
 	make -B genesis
 	make -B bp2
 	make -B bp3
@@ -35,16 +34,6 @@ bp5:
 	@docker-compose stop bp5
 	@docker-compose up -d --build bp5
 	@echo "done bp5"
-
-build-docker: ##@devops Build the docker image
-build-docker: ./Dockerfile
-	echo "Building docker container ..."
-	$(eval -include .env)
-	@echo $(SSH_PRIVATE_KEY)
-	@docker build \
-		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME) \
-		-t $(DOCKER_REGISTRY)/$(IMAGE_NAME) \
-		.
 
 stop:
 	@docker-compose stop
