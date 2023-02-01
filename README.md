@@ -2,13 +2,12 @@
 
 ## Description
 
-Libre Testnet Local provides a quick way to setup a Local Testnet network for development.
-
+Libre Local provides a quick way to setup a Local Testnet network for development.
 The primary benefits of containers are consistency across different environments and deployment ease.
 
-This project works along with a [full-stack-boilerplate](https://github.com/eoscostarica/full-stack-boilerplate) to help you build your EOS dApp.
+This project works along with a [full-stack-boilerplate](https://github.com/eoscostarica/full-stack-boilerplate) to help you build your AntelopeIO dApp.
 
-### Why to use a local environment?
+## Why to use a local environment?
 
 A local environment provides a series of benefits that you cannot in a public network, for example, with Libre locally, transaction costs are avoided since they are carried out in a development environment and not in production, also, they are accessed to system contracts to modify them as appropriate.
 
@@ -16,20 +15,18 @@ In a Blockchain network every transaction creates an immutable record and everyt
 
 Finally, a factor to consider is the time that is reduced in the initial configuration of any network, this image allows directly, with only two commands to have the network installed and ready to perform functionality tests as necessary.
 
-### Contracts
+## Contracts
 
-The EOSIO image is based on the `eosio.system`, `eosio.token` and `eosio.msig` contracts for its configuration. Your code can be found at [this link](https://github.com/EOSIO/eosio.contracts/tree/master/contracts).
+The AntelopeIO image is based on the `eosio.system`, `eosio.token` and `eosio.msig` contracts for its configuration. Your code can be found at [this link](https://github.com/AntelopeIO/reference-contracts/tree/main/contracts).
 
 1. **eosio.system**: Defines the structures and actions needed for blockchain's core functionality.
-2. **eosio.token**: Defines the structures and actions that allow users to create, issue, and manage tokens for EOSIO-based blockchains.
+2. **eosio.token**: Defines the structures and actions that allow users to create, issue, and manage tokens for AntelopeIO-based blockchains.
 3. **eosio.msig**: Allows the creation of proposed transactions that require authorization from a list of accounts.
 
 ### Deployable projects
 
-As Libre Local Network is based on EOSIO protocol, some already smart contract production projects can be deployed on our local network due to the local dev environment setup. Some of them are:
-
-1. Eden: Take a look at the smart contract code [here](https://github.com/eoscommunity/Eden/tree/main/contracts).
-2. simpleassets: A simple standard for digital assets on EOSIO blockchains: Non-Fungible Tokens (NFTs), Fungible Tokens (FTs), and Non-Transferable Tokens (NTTs). Take a look at the smart contract code [here](https://github.com/CryptoLions/SimpleAssets).
+1. Eden: Take a look at the smart contract code [here](https://github.com/gofractally/Eden/tree/main/contracts).
+2. simpleassets: A simple standard for digital assets on AntelopeIO blockchains: Non-Fungible Tokens (NFTs), Fungible Tokens (FTs), and Non-Transferable Tokens (NTTs). Take a look at the smart contract code [here](https://github.com/CryptoLions/SimpleAssets).
 3. atomicassets: AtomicAssets is a Non Fungible Token (NFT) standard for eosio blockchains developed by pink.network. Take a look at the smart contract code [here](https://github.com/pinknetworkx/atomicassets-contract).
 4. dgoods: dGoods is an open source and free standard for handling the virtual representation of items, both digital and physical, on the EOS blockchain led by Mythical Games. Take a look at the smart contract code [here](https://github.com/MythicalGames/dgoods).
 
@@ -62,13 +59,13 @@ Private key: 5JZSuHernxdc6NHG2vV1XrAz61kvQmz71S473hQQdmdc4AwSP6a
 Public key: EOS7tJAV8DPN5Q3byKeKzWax6BDmPbWN1i64YaDAr7g8NhPDPKcfN
 ```
 
-> Don't use these keys in production environments, as it's just for easy getting started.
+> Don't use these keys in production environments, since they are public and it's just to start easily.
 
 ## Instructions for creating Libre Local Network image locally
 
 To create the Docker image locally, you must run the following commands:
 
-- Clone the local Eos repository `https://github.com/eoscostarica/libre-local`
+- Clone the local Eos repository `https://github.com/edenia/libre-local`
 - Enter to the cloned repository folder `cd <path/libre-local>`
 - Build the Dockerfile image with env variables `make build-docker` or `docker build -t libre-local --build-arg testnet_eosio_public_key="<public_key>" --build-arg testnet_eosio_private_key="<private_key>" .`
 - Run the Dockerfile image `make run` or `docker run -dp 8888:8888 libre-local`
@@ -97,10 +94,6 @@ By this point, you already have the Libre Local Network image running locally.
 └── start.sh ................. Instructions for configuring contracts and usage characteristics
 ```
 
-## License
-
-MIT © [EOS Costa Rica](https://eoscostarica.io/)
-
 ## Contributing
 
 If you want to contribute to this repository, please follow the steps below:
@@ -115,18 +108,18 @@ Read the EOS Costa Rica open source [contribution guidelines](https://guide.eosc
 
 If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/libre-local/issues).
 
-## What is EOSIO?
+## What is AntelopeIO?
 
-EOSIO is a highly performant open-source blockchain platform, built to support and operate safe, compliant, and predictable digital infrastructures.
+AntelopeIO is a highly performant open-source blockchain platform, built to support and operate safe, compliant, and predictable digital infrastructures.
 
-## About EOS Costa Rica
+<span align="center">
 
-<br>
-<center>
-<img src="https://raw.githubusercontent.com/eoscostarica/design-assets/master/logos/eosCR/fullColor-horizontal-transparent-white.png" width="400" >
-</center>
-<br>
+<a href="https://edenia.com"><img width="400" alt="image" src="https://raw.githubusercontent.com/edenia/.github/master/.github/workflows/images/edenia-logo.png"></img></a>
 
-EOS Costa Rica is an independently-owned, self-funded, bare-metal Genesis block producer that provides stable and secure infrastructure for EOSIO blockchains. We support open source software for our community while offering enterprise solutions and custom smart contract development for our clients.
+[![Twitter](https://img.shields.io/twitter/follow/EdeniaWeb3?style=for-the-badge)](https://twitter.com/EdeniaWeb3)
+![Discord](https://img.shields.io/discord/946500573677625344?color=black&label=discord&logo=discord&logoColor=white&style=for-the-badge)
 
-[eoscostarica.io](https://eoscostarica.io/)
+Edenia runs independent blockchain infrastructure and develops web3 solutions. Our team of technology-agnostic builders has been operating since 1987, leveraging the newest technologies to make the internet safer, more efficient, and more transparent.
+
+[edenia.com](https://edenia.com)
+</span>
