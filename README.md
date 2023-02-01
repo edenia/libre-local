@@ -59,7 +59,7 @@ Private key: 5JZSuHernxdc6NHG2vV1XrAz61kvQmz71S473hQQdmdc4AwSP6a
 Public key: EOS7tJAV8DPN5Q3byKeKzWax6BDmPbWN1i64YaDAr7g8NhPDPKcfN
 ```
 
-> Don't use these keys in production environments, since they are public and it's just to start easily. Also considerer that you will need to import your own keys to your the wallet or the one provided in the `.env.example` file.
+> Don't use these keys in production environments, since they are public and it's just to start easily. Also consider that you will need to import your `own keys` to your wallet or the one provided in the `.env.example` file.
 
 ## Instructions for creating Libre Local Network image locally
 
