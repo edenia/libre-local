@@ -119,7 +119,7 @@ If you want to contribute to this repository, please follow the steps below:
 
 Read the EOS Costa Rica open source [contribution guidelines](https://guide.eoscostarica.io/docs/open-source-guidelines/) for more information on scheduling conventions.
 
-If you find any bugs, please report them by opening an issue at [this link](https://github.com/eoscostarica/libre-local/issues).
+If you find any bugs, please report them by opening an issue at [this link](https://github.com/edenia/libre-local/issues).
 
 ## What is AntelopeIO?
 
