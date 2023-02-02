@@ -79,20 +79,34 @@ If you wish to use the Smart Contracts currently running on Libre Mainnet or Lib
 ```text title="./libre-local"
 /
 .
+├── .env.example
 ├── .github
+│   ├── ISSUE_TEMPLATE
 │   └── workflows
-│       └── publish-docker-image.yml
+├── .gitignore
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
-├── Dockerfile ............... Contains instructions for building the Libre Local Network image
-├── LICENSE .................. Terms and Conditions
-├── README.md ................ Repository specification
-├── config.ini ............... Nodeos configuration file
-├── docker-compose.yaml ...... Container definition
-├── docs ..................... Some media content for README
-├── genesis.json ............. Specifies the network genesis node parameters
-├── makefile ................. Shell commands
-└── start.sh ................. Instructions for configuring contracts and usage characteristics
+├── LICENSE
+├── README.md
+├── docker-compose.yaml
+├── docs
+│   └── containers.png
+├── makefile
+├── nodes
+│   ├── bp2
+│   ├── bp3
+│   ├── bp4
+│   ├── bp5
+│   └── genesis
+├── scripts
+│   ├── contracts.sh
+│   └── optional.sh
+└── wasm
+    ├── dao-contract
+    ├── libre-referrals
+    ├── staking-contract
+    ├── swap-contract
+    └── system-contracts
 ```
 
 ## Contributing
