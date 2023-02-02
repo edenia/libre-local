@@ -106,7 +106,7 @@ init_reward_contract() {
 }
 
 init_dao_contract() {
-    cleos push action dao.libre setparams '{"funding_account": "dao.libre", "vote_threshold": 3, "voting_days": 1, "minimum_balance_to_create_proposals": "10.0000 LIBRE", "proposal_cost": "3.000000000 PBTC", "approver": "dao.libre"}' -p dao.libre@active
+    cleos push action dao.libre setparams '{"funding_account": "dao.libre", "vote_threshold": 3, "voting_days": 1, "minimum_balance_to_create_proposals": "10.0000 LIBRE", "proposal_cost": "5.0000 LIBRE", "approver": "dao.libre"}' -p dao.libre@active
 }
 
 setup_swap() {
@@ -164,8 +164,8 @@ swap() {
 }
 
 create_dao_proposal() {    
-    cleos push action dao.libre create '{"creator": "stakingte111", "receiver": "stakingte111", "name": "bigdeal", "title": "testing", "detail": "more info", "amount": "10.0000 LIBRE", "url": "test"}' -p stakingte111@active
-    cleos push action eosio.token transfer '{"from": "stakingte111", "to": "dao.libre", "quantity": "3.000000000 PBTC", "memo": "payment:bigdeal"}' -p stakingte111@active
+    cleos push action dao.libre create '{"creator": "alice", "receiver": "alice", "name": "bigdeal", "title": "testing", "detail": "more info", "amount": "10.0000 LIBRE", "url": "test"}' -p alice@active
+    cleos push action eosio.token transfer '{"from": "alice", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:bigdeal"}' -p alice@active
 }
 
 vote_for_dao_proposal() {
