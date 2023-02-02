@@ -89,8 +89,6 @@ If you wish to use the Smart Contracts currently running on Libre Mainnet or Lib
 ├── LICENSE
 ├── README.md
 ├── docker-compose.yaml
-├── docs
-│   └── containers.png
 ├── makefile
 ├── nodes
 │   ├── bp2
