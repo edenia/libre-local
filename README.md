@@ -40,10 +40,8 @@ The AntelopeIO image is based on the `eosio.system`, `eosio.token` and `eosio.ms
 
 ## Get started
 
-- Create you `.env` running `cp .env.example .env`
-- Update your `.env` with is respective values. For `REPOSITORY_URL` assign the repository url
-- Run `update-contract`. _This step make request for credentials_
-- Build the smart contracts and run the blockchain `make run`
+- Create you `.env` by running `cp .env.example .env`
+- Start the network with `make fast-run`. This will download the images if you don't have them and start the network
 - Run the command `cleos get info` or check the link in the browser `http://127.0.0.1:8888/v1/chain/get_info`
 
 If you run the command `cleos get info` or go to `http://127.0.0.1:8888/v1/chain/get_info` and get information like the following it is because you already have the environment ready to work.
@@ -52,12 +50,7 @@ If you run the command `cleos get info` or go to `http://127.0.0.1:8888/v1/chain
 {"server_version":"e57a1eab","chain_id":"981453d176ddca32aa278ff7b8af9bf4632de00ab49db273db03115705d90c5a","head_block_num":66,"last_irreversible_block_num":65,"last_irreversible_block_id":"00000041fcc36403c71cebfc95810f610412b474f60735639fcaa2d241fe5ffa","head_block_id":"00000042a08478812c642d311f5ff22b9212559eeb9ee1042925742d8b46dd7f","head_block_time":"2021-07-08T05:48:45.500","head_block_producer":"eosio","virtual_block_cpu_limit":213407,"virtual_block_net_limit":1118998,"block_cpu_limit":199900,"block_net_limit":1048576,"server_version_string":"v2.0.12","fork_db_head_block_num":66,"fork_db_head_block_id":"00000042a08478812c642d311f5ff22b9212559eeb9ee1042925742d8b46dd7f","server_full_version_string":"v2.0.12-e57a1eab619edffc25afa7eceb05a01ab575c34a"}
 ```
 
-**Note:** As it is a quick start, you can use the following generated keys for `TESTNET_EOSIO_PRIVATE_KEY` and `TESTNET_EOSIO_PUBLIC_KEY`.
-
-```
-Private key: 5JZSuHernxdc6NHG2vV1XrAz61kvQmz71S473hQQdmdc4AwSP6a
-Public key: EOS7tJAV8DPN5Q3byKeKzWax6BDmPbWN1i64YaDAr7g8NhPDPKcfN
-```
+**Note:** As it is a quick start, you can use the `.env.example` file with the key there provided.
 
 > Don't use these keys in production environments, since they are public and it's just to start easily. Also consider that you will need to import your `own keys` to your wallet or the one provided in the `.env.example` file.
 
@@ -67,19 +60,19 @@ To create the Docker image locally, you must run the following commands:
 
 - Clone the local Eos repository `https://github.com/edenia/libre-local`
 - Enter to the cloned repository folder `cd <path/libre-local>`
-- Build the Dockerfile image with env variables `make build-docker` or `docker build -t libre-local --build-arg testnet_eosio_public_key="<public_key>" --build-arg testnet_eosio_private_key="<private_key>" .`
-- Run the Dockerfile image `make run` or `docker run -dp 8888:8888 libre-local`
+- Create your `.env` file `cp .env.example .env`
+- Run the Dockerfile image `make run`, this will use the Dockerfiles to build the images and start the network according to the information in the nodes directory.
 - Run the command `cleos get info` or check the link in the browser `http://127.0.0.1:8888/v1/chain/get_info`
 
 By this point, you already have the Libre Local Network image running locally.
 
-If you wish to setup a version example of the current Smart Contracts currently running on Libre Mainnet or Libre Testnet, you can run the following command in the root folder of the repository:
+If you wish to use the Smart Contracts currently running on Libre Mainnet or Libre Testnet, you can use the following command in the root folder of the repository to set them up:
 
 ```sh
 ./scripts/contracts.sh
 ```
 
-> **Note:** If you wish to run a modified version of the contracts here provided, you can update them, get the wasm and put them in the `./wasm` folder, reset the network and run the command above.
+> **Note:** To run a modified version of the contracts, you can update them, get the wasm and put them in the `./wasm` folder with their respective contract names, reset the network and run the previous command.
 
 ## File structure
 

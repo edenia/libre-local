@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ -f ../.env ]; then
-    export $(cat ../.env | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
+if [ -f .env ]; then
+    export $(cat .env | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
 fi
 
 CUSTOM_ACCOUNTS=(alice bob pip bitcoinlibre)

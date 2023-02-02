@@ -1,7 +1,13 @@
 LATEST_TAG ?= latest
-IMAGE_NAME=phoenix-local
-DOCKER_REGISTRY=eoscostarica506
+IMAGE_NAME=libre-node
+DOCKER_REGISTRY=leister
 VERSION ?= $(shell git rev-parse --short HEAD)
+
+pull-images:
+	@docker compose pull
+
+fast-run: pull-images ##@devops Run the docker image
+	@docker-compose up -d --no-build
 
 run: ##@devops Run the docker image
 	make -B genesis
@@ -37,3 +43,13 @@ bp5:
 
 stop:
 	@docker-compose stop
+
+build-docker:
+	@docker-compose build
+
+push-image: ##@devops Push the docker image to the registry
+	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME):$(VERSION)
+	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)2:$(VERSION)
+	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)3:$(VERSION)
+	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)4:$(VERSION)
+	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)5:$(VERSION)
