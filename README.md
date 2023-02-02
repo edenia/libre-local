@@ -73,6 +73,14 @@ To create the Docker image locally, you must run the following commands:
 
 By this point, you already have the Libre Local Network image running locally.
 
+If you wish to setup a version example of the current Smart Contracts currently running on Libre Mainnet or Libre Testnet, you can run the following command in the root folder of the repository:
+
+```sh
+./scripts/contracts.sh
+```
+
+> **Note:** If you wish to run a modified version of the contracts here provided, you can update them, get the wasm and put them in the `./wasm` folder, reset the network and run the command above.
+
 ## File structure
 
 ```text title="./libre-local"
