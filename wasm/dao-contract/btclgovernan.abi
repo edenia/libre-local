@@ -1,0 +1,308 @@
+{
+    "____comment": "This file was generated with eosio-abigen. DO NOT EDIT ",
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "approve",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposal",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "checkvotes",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposal",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "countvotes",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposal",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "create",
+            "base": "",
+            "fields": [
+                {
+                    "name": "creator",
+                    "type": "name"
+                },
+                {
+                    "name": "receiver",
+                    "type": "name"
+                },
+                {
+                    "name": "name",
+                    "type": "name"
+                },
+                {
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "name": "detail",
+                    "type": "string"
+                },
+                {
+                    "name": "amount",
+                    "type": "asset"
+                },
+                {
+                    "name": "url",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "name": "params",
+            "base": "",
+            "fields": [
+                {
+                    "name": "funding_account",
+                    "type": "name"
+                },
+                {
+                    "name": "vote_threshold",
+                    "type": "uint8"
+                },
+                {
+                    "name": "voting_days",
+                    "type": "uint8"
+                },
+                {
+                    "name": "minimum_balance_to_create_proposals",
+                    "type": "asset"
+                },
+                {
+                    "name": "proposal_cost",
+                    "type": "asset"
+                },
+                {
+                    "name": "approver",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "proposals",
+            "base": "",
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "name"
+                },
+                {
+                    "name": "creator",
+                    "type": "name"
+                },
+                {
+                    "name": "receiver",
+                    "type": "name"
+                },
+                {
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "name": "detail",
+                    "type": "string"
+                },
+                {
+                    "name": "amount",
+                    "type": "asset"
+                },
+                {
+                    "name": "url",
+                    "type": "string"
+                },
+                {
+                    "name": "created_on",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "expires_on",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "votes_for",
+                    "type": "int64"
+                },
+                {
+                    "name": "votes_against",
+                    "type": "int64"
+                },
+                {
+                    "name": "status",
+                    "type": "uint8"
+                }
+            ]
+        },
+        {
+            "name": "reject",
+            "base": "",
+            "fields": [
+                {
+                    "name": "proposal",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "setparams",
+            "base": "",
+            "fields": [
+                {
+                    "name": "funding_account",
+                    "type": "name"
+                },
+                {
+                    "name": "vote_threshold",
+                    "type": "uint8"
+                },
+                {
+                    "name": "voting_days",
+                    "type": "uint8"
+                },
+                {
+                    "name": "minimum_balance_to_create_proposals",
+                    "type": "asset"
+                },
+                {
+                    "name": "proposal_cost",
+                    "type": "asset"
+                },
+                {
+                    "name": "approver",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "voteagainst",
+            "base": "",
+            "fields": [
+                {
+                    "name": "voter",
+                    "type": "name"
+                },
+                {
+                    "name": "proposal",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "votefor",
+            "base": "",
+            "fields": [
+                {
+                    "name": "voter",
+                    "type": "name"
+                },
+                {
+                    "name": "proposal",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "votes",
+            "base": "",
+            "fields": [
+                {
+                    "name": "voter",
+                    "type": "name"
+                },
+                {
+                    "name": "is_for",
+                    "type": "bool"
+                },
+                {
+                    "name": "quantity",
+                    "type": "int64"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "approve",
+            "type": "approve",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "checkvotes",
+            "type": "checkvotes",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "countvotes",
+            "type": "countvotes",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "create",
+            "type": "create",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "reject",
+            "type": "reject",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setparams",
+            "type": "setparams",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "voteagainst",
+            "type": "voteagainst",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "votefor",
+            "type": "votefor",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "params",
+            "type": "params",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "proposals",
+            "type": "proposals",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        },
+        {
+            "name": "votes",
+            "type": "votes",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": []
+        }
+    ],
+    "ricardian_clauses": [],
+    "variants": []
+}

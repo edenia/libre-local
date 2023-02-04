@@ -2,7 +2,7 @@ name: Publish Docker image
 
 on:
   push:
-    branches: master
+    branches: main
 
 jobs:
   push_to_registries:
@@ -42,7 +42,27 @@ jobs:
             build-docker \
             push-image
         env:
-          TESTNET_EOSIO_PRIVATE_KEY: 5JXUDgNULcdt3VJiwz9RhrQKpEqmvXEduYB9iLYmPeJyFaVFf97
-          TESTNET_EOSIO_PUBLIC_KEY: EOS54XsQUccmfiaLFybXogaqGSApbBNWFkKqUa7595KC91PyNG7xu
+          IMAGE_NAME: libre-node
           DOCKER_REGISTRY: eoscostarica506
-          IMAGE_NAME: phoenix-local
+          DEFAULT_PRIVATE_KEY: 5K11Z3fpvC6STquWJzgvHUjCyY7ya6JfwcuztcA9YS3QNKQAGds
+          DEFAULT_PUBLIC_KEY: EOS4yhEJpSbQoLLUz6Y137wyXkRqfALRoGYUGywiLSEcDoyEaK9oC
+
+          # Libre Network
+          TESTNET_EOSIO_PRIVATE_KEY: 5JiiDeRyL85RH1RX6H8kV2dAYNXmjdRadH637J9zuJHcBhAUGuB
+          TESTNET_EOSIO_PUBLIC_KEY: EOS7nGphuG3oNvED8hFTMdA9JRWFkHET2csURYbDdCJmhFfNpp9xZ
+
+          # Libre Network - Node
+          TESTNET_NODE_PRIVATE_KEY: 5KJ8PUffiGRKASSx5zZrDp7oNPqBJxqMtWfnKYtDm8ZaaVs3GeZ
+          TESTNET_NODE_PUBLIC_KEY: EOS7ju8oBzd8uYFUdZzjcV4NvgPeXEvvBMtJYJcibrvGA4yPXfxcT
+
+          # Libre Network - Node2
+          TESTNET_NODE2_PRIVATE_KEY: 5JMpRkYwkh6PL8JqD8oUUnGTG6TVxawH8LpNGZJULDwbCG2eHgu
+          TESTNET_NODE2_PUBLIC_KEY: EOS6GEtyTC1ophzGHFHRj5vZzgehPt7vPEGdDaCbtSg5qhzDLw7PE
+
+          # Libre Network - Node3
+          TESTNET_NODE3_PRIVATE_KEY: 5JhPLoPWsnduREjjPSWp53S2W9TY9ssj9yhwtRZGGZmetqvsWYf
+          TESTNET_NODE3_PUBLIC_KEY: EOS6ThmAMojJ4wJ8jcnWTv6dGEu1462j5pXfXiqPZntbHftQtHKrz
+
+          # Libre Network - Node4
+          TESTNET_NODE4_PRIVATE_KEY: 5JJRKwDt5TFBmz3J9rC7XqNTVXmx2C3uMyaVr1NmfEorAenJNGk
+          TESTNET_NODE4_PUBLIC_KEY: EOS5oUhfzC1RZipsSTieSxgiFQ5ZDkQMPDH2nD7YUeRNQkyBWSYb9

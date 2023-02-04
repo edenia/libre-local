@@ -1,0 +1,485 @@
+{
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "init",
+            "base": "",
+            "fields": [
+                {
+                    "name": "start_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "total_days",
+                    "type": "uint16"
+                }
+            ]
+        },
+        {
+            "name": "claim",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "index",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "unstake",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "index",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "stakepreview",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "stake_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "stake_length",
+                    "type": "uint64"
+                },
+                {
+                    "name": "mint_bonus",
+                    "type": "float32"
+                },
+                {
+                    "name": "libre_staked",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "stakelog",
+            "base": "",
+            "fields": [
+                {
+                    "name": "index",
+                    "type": "uint64"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "stake_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "stake_length",
+                    "type": "uint64"
+                },
+                {
+                    "name": "mint_bonus",
+                    "type": "float32"
+                },
+                {
+                    "name": "libre_staked",
+                    "type": "asset"
+                },
+                {
+                    "name": "apy",
+                    "type": "float32"
+                },
+                {
+                    "name": "payout",
+                    "type": "asset"
+                },
+                {
+                    "name": "payout_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "status",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "mintpreview",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "mint_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "mint_length",
+                    "type": "uint64"
+                },
+                {
+                    "name": "btc_contributed",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "mintlog",
+            "base": "",
+            "fields": [
+                {
+                    "name": "index",
+                    "type": "uint64"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "day_of_mint_rush",
+                    "type": "uint64"
+                },
+                {
+                    "name": "staked_days",
+                    "type": "uint64"
+                },
+                {
+                    "name": "btc_contributed",
+                    "type": "asset"
+                },
+                {
+                    "name": "mint_bonus",
+                    "type": "float32"
+                },
+                {
+                    "name": "libre_minted",
+                    "type": "asset"
+                },
+                {
+                    "name": "mint_apy",
+                    "type": "float32"
+                },
+                {
+                    "name": "arg8",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "mintprocess",
+            "base": "",
+            "fields": [
+                {
+                    "name": "max_steps",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "updatevp",
+            "base": "",
+            "fields": [
+                {
+                    "name": "max_steps",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "migrate1",
+            "base": "",
+            "fields": [
+                {
+                    "name": "max_steps",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "migrate2",
+            "base": "",
+            "fields": [
+                {
+                    "name": "max_steps",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "stake",
+            "base": "",
+            "fields": [
+                {
+                    "name": "index",
+                    "type": "uint64"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "stake_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "stake_length",
+                    "type": "uint64"
+                },
+                {
+                    "name": "mint_bonus",
+                    "type": "float32"
+                },
+                {
+                    "name": "libre_staked",
+                    "type": "asset"
+                },
+                {
+                    "name": "apy",
+                    "type": "float32"
+                },
+                {
+                    "name": "payout",
+                    "type": "asset"
+                },
+                {
+                    "name": "payout_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "status",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "mintstats",
+            "base": "",
+            "fields": [
+                {
+                    "name": "btc_contributed",
+                    "type": "asset"
+                },
+                {
+                    "name": "start_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "end_date",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "total_days",
+                    "type": "uint16"
+                }
+            ]
+        },
+        {
+            "name": "mintbonus",
+            "base": "",
+            "fields": [
+                {
+                    "name": "index",
+                    "type": "uint64"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "day_of_mint_rush",
+                    "type": "uint64"
+                },
+                {
+                    "name": "staked_days",
+                    "type": "uint64"
+                },
+                {
+                    "name": "btc_contributed",
+                    "type": "asset"
+                },
+                {
+                    "name": "mint_bonus",
+                    "type": "float64"
+                },
+                {
+                    "name": "libre_minted",
+                    "type": "asset"
+                },
+                {
+                    "name": "mint_apy",
+                    "type": "float64"
+                },
+                {
+                    "name": "status",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "power",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "voting_power",
+                    "type": "float64"
+                },
+                {
+                    "name": "last_update",
+                    "type": "time_point_sec"
+                }
+            ]
+        },
+        {
+            "name": "migrate",
+            "base": "",
+            "fields": [
+                {
+                    "name": "last_index",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "state",
+            "base": "",
+            "fields": [
+                {
+                    "name": "next_update",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "last_index",
+                    "type": "uint64"
+                },
+                {
+                    "name": "vp_state",
+                    "type": "uint8"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "init",
+            "type": "init",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "claim",
+            "type": "claim",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "unstake",
+            "type": "unstake",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "stakepreview",
+            "type": "stakepreview",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "stakelog",
+            "type": "stakelog",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mintpreview",
+            "type": "mintpreview",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mintlog",
+            "type": "mintlog",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "mintprocess",
+            "type": "mintprocess",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "updatevp",
+            "type": "updatevp",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "migrate1",
+            "type": "migrate1",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "migrate2",
+            "type": "migrate2",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "stake",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "stake"
+        },
+        {
+            "name": "mintstats",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "mintstats"
+        },
+        {
+            "name": "mintbonus",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "mintbonus"
+        },
+        {
+            "name": "power",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "power"
+        },
+        {
+            "name": "migrate",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "migrate"
+        },
+        {
+            "name": "state",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "state"
+        }
+    ],
+    "ricardian_clauses": [],
+    "error_messages": [],
+    "abi_extensions": [],
+    "variants": []
+}

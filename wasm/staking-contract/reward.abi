@@ -1,0 +1,366 @@
+{
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "init",
+            "base": "",
+            "fields": [
+                {
+                    "name": "distribution_interval_sec",
+                    "type": "uint32"
+                },
+                {
+                    "name": "reward_per_block",
+                    "type": "uint64"
+                },
+                {
+                    "name": "allowed_pools",
+                    "type": "symbol_code[]"
+                }
+            ]
+        },
+        {
+            "name": "receipthdr",
+            "base": "",
+            "fields": [
+                {
+                    "name": "distribution_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "reward_per_block",
+                    "type": "asset"
+                },
+                {
+                    "name": "total_pool_reward",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "receipt",
+            "base": "",
+            "fields": [
+                {
+                    "name": "distribution_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "pool_name",
+                    "type": "string"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "reward_pct",
+                    "type": "float64"
+                },
+                {
+                    "name": "reward",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "setinterval",
+            "base": "",
+            "fields": [
+                {
+                    "name": "time_sec",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "setblockrwd",
+            "base": "",
+            "fields": [
+                {
+                    "name": "amount",
+                    "type": "uint64"
+                }
+            ]
+        },
+        {
+            "name": "addpool",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pool",
+                    "type": "symbol_code"
+                }
+            ]
+        },
+        {
+            "name": "rmpool",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pool",
+                    "type": "symbol_code"
+                }
+            ]
+        },
+        {
+            "name": "claim",
+            "base": "",
+            "fields": [
+                {
+                    "name": "pool",
+                    "type": "symbol_code"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "updateall",
+            "base": "",
+            "fields": [
+                {
+                    "name": "max_steps",
+                    "type": "uint32"
+                }
+            ]
+        },
+        {
+            "name": "global_v0",
+            "base": "",
+            "fields": [
+                {
+                    "name": "distribution_interval_sec",
+                    "type": "uint32"
+                },
+                {
+                    "name": "reward_per_block",
+                    "type": "uint64"
+                },
+                {
+                    "name": "allowed_pools",
+                    "type": "symbol_code[]"
+                }
+            ]
+        },
+        {
+            "name": "next_distribution",
+            "base": "",
+            "fields": [
+                {
+                    "name": "distribution_time",
+                    "type": "time_point_sec"
+                }
+            ]
+        },
+        {
+            "name": "pool",
+            "base": "",
+            "fields": [
+                {
+                    "name": "amount",
+                    "type": "uint64"
+                },
+                {
+                    "name": "symbol_code",
+                    "type": "symbol_code"
+                }
+            ]
+        },
+        {
+            "name": "current_distribution",
+            "base": "",
+            "fields": [
+                {
+                    "name": "distribution_time",
+                    "type": "time_point_sec"
+                },
+                {
+                    "name": "total_reward",
+                    "type": "asset"
+                },
+                {
+                    "name": "reward_per_block",
+                    "type": "asset"
+                },
+                {
+                    "name": "pools",
+                    "type": "pool[]"
+                }
+            ]
+        },
+        {
+            "name": "reward_distribution",
+            "base": "",
+            "fields": [
+                {
+                    "name": "last_pool",
+                    "type": "symbol_code"
+                },
+                {
+                    "name": "last_account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "stats_v0",
+            "base": "",
+            "fields": [
+                {
+                    "name": "balance",
+                    "type": "asset"
+                }
+            ]
+        },
+        {
+            "name": "provider_v0",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "total_staked",
+                    "type": "uint64"
+                },
+                {
+                    "name": "claimed",
+                    "type": "uint64"
+                },
+                {
+                    "name": "unclaimed",
+                    "type": "uint64"
+                },
+                {
+                    "name": "last_claim",
+                    "type": "time_point_sec"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "init",
+            "type": "init",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "receipthdr",
+            "type": "receipthdr",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "receipt",
+            "type": "receipt",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setinterval",
+            "type": "setinterval",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "setblockrwd",
+            "type": "setblockrwd",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "addpool",
+            "type": "addpool",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "rmpool",
+            "type": "rmpool",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "claim",
+            "type": "claim",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "updateall",
+            "type": "updateall",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "global",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "variant<global_v0>"
+        },
+        {
+            "name": "distribution",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "variant<next_distribution,current_distribution>"
+        },
+        {
+            "name": "state",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "variant<reward_distribution>"
+        },
+        {
+            "name": "stats",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "variant<stats_v0>"
+        },
+        {
+            "name": "provider",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "variant<provider_v0>"
+        }
+    ],
+    "ricardian_clauses": [],
+    "error_messages": [],
+    "abi_extensions": [],
+    "variants": [
+        {
+            "name": "variant<global_v0>",
+            "types": [
+                "global_v0"
+            ]
+        },
+        {
+            "name": "variant<next_distribution,current_distribution>",
+            "types": [
+                "next_distribution",
+                "current_distribution"
+            ]
+        },
+        {
+            "name": "variant<reward_distribution>",
+            "types": [
+                "reward_distribution"
+            ]
+        },
+        {
+            "name": "variant<stats_v0>",
+            "types": [
+                "stats_v0"
+            ]
+        },
+        {
+            "name": "variant<provider_v0>",
+            "types": [
+                "provider_v0"
+            ]
+        }
+    ]
+}

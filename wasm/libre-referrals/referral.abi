@@ -1,0 +1,73 @@
+{
+    "version": "eosio::abi/1.1",
+    "types": [],
+    "structs": [
+        {
+            "name": "add",
+            "base": "",
+            "fields": [
+                {
+                    "name": "approver",
+                    "type": "name"
+                },
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "referrer",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "remove",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                }
+            ]
+        },
+        {
+            "name": "referral",
+            "base": "",
+            "fields": [
+                {
+                    "name": "account",
+                    "type": "name"
+                },
+                {
+                    "name": "referrer",
+                    "type": "name"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "name": "add",
+            "type": "add",
+            "ricardian_contract": ""
+        },
+        {
+            "name": "remove",
+            "type": "remove",
+            "ricardian_contract": ""
+        }
+    ],
+    "tables": [
+        {
+            "name": "referral",
+            "index_type": "i64",
+            "key_names": [],
+            "key_types": [],
+            "type": "referral"
+        }
+    ],
+    "ricardian_clauses": [],
+    "error_messages": [],
+    "abi_extensions": [],
+    "variants": []
+}
