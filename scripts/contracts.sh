@@ -19,11 +19,11 @@ register_bps() {
 }
 
 vote_producers() {
-    cleos push action eosio voteproducer '{"voter": "stakingte111", "producer": "bp2"}' -p stakingte111@active
-    cleos push action eosio voteproducer '{"voter": "stakingte112", "producer": "bp3"}' -p stakingte112@active
-    cleos push action eosio voteproducer '{"voter": "stakingte113", "producer": "bp4"}' -p stakingte113@active
-    cleos push action eosio voteproducer '{"voter": "stakingte114", "producer": "bp5"}' -p stakingte114@active
-    cleos push action eosio voteproducer '{"voter": "stakingte115", "producer": "bp2"}' -p stakingte115@active
+    cleos push action eosio voteproducer '{"voter": "libreacco111", "producers": ["bp2"]}' -p libreacco111@active
+    cleos push action eosio voteproducer '{"voter": "libreacco112", "producers": ["bp3"]}' -p libreacco112@active
+    cleos push action eosio voteproducer '{"voter": "libreacco113", "producers": ["bp4"]}' -p libreacco113@active
+    cleos push action eosio voteproducer '{"voter": "libreacco114", "producers": ["bp5"]}' -p libreacco114@active
+    cleos push action eosio voteproducer '{"voter": "libreacco115", "producers": ["bp2"]}' -p libreacco115@active
 }
 
 create_accounts() {
@@ -53,9 +53,9 @@ setup_permission() {
 }
 
 add_referrals() {
-    cleos push action accts.libre add '{"approver": "alice", "account": "stakingte111", "referrer": "alice"}' -p alice@active
-    cleos push action accts.libre add '{"approver": "alice", "account": "stakingte112", "referrer": "alice"}' -p alice@active
-    cleos push action accts.libre add '{"approver": "alice", "account": "stakingte113", "referrer": "alice"}' -p alice@active
+    cleos push action accts.libre add '{"approver": "alice", "account": "libreacco111", "referrer": "alice"}' -p alice@active
+    cleos push action accts.libre add '{"approver": "alice", "account": "libreacco112", "referrer": "alice"}' -p alice@active
+    cleos push action accts.libre add '{"approver": "alice", "account": "libreacco113", "referrer": "alice"}' -p alice@active
 }
 
 fully_create_aux_accounts() {
@@ -67,13 +67,13 @@ fully_create_aux_accounts() {
             for k in {1..5}
             do
                 # create account
-                cleos create account eosio stakingte$i$j$k $DEFAULT_PUBLIC_KEY
-                cleos push action eosio setalimits '{"authorizer": "eosio", "account": '"stakingte$i$j$k"', "ram": 9000000, "net": 2000, "cpu": 2000}' -p eosio@active
+                cleos create account eosio libreacco$i$j$k $DEFAULT_PUBLIC_KEY
+                cleos push action eosio setalimits '{"authorizer": "eosio", "account": '"libreacco$i$j$k"', "ram": 9000000, "net": 2000, "cpu": 2000}' -p eosio@active
 
                 # fund account
-                cleos push action eosio.token transfer '{"from": "eosio", "to": "stakingte'$i$j$k'", "quantity": "100.0000 LIBRE", "memo": "funding LIBRE"}' -p eosio@active
-                cleos push action btc.ptokens transfer '{"from": "eosio", "to": "stakingte'$i$j$k'", "quantity": "100.000000000 PBTC", "memo": "funding PBTC"}' -p eosio@active
-                cleos push action usdt.ptokens transfer '{"from": "eosio", "to": "stakingte'$i$j$k'", "quantity": "100.000000000 PUSDT", "memo": "funding PUSDT"}' -p eosio@active
+                cleos push action eosio.token transfer '{"from": "eosio", "to": "libreacco'$i$j$k'", "quantity": "100.0000 LIBRE", "memo": "funding LIBRE"}' -p eosio@active
+                cleos push action btc.ptokens transfer '{"from": "eosio", "to": "libreacco'$i$j$k'", "quantity": "100.000000000 PBTC", "memo": "funding PBTC"}' -p eosio@active
+                cleos push action usdt.ptokens transfer '{"from": "eosio", "to": "libreacco'$i$j$k'", "quantity": "100.000000000 PUSDT", "memo": "funding PUSDT"}' -p eosio@active
             done
         done
     done
@@ -106,7 +106,7 @@ init_reward_contract() {
 }
 
 init_dao_contract() {
-    cleos push action dao.libre setparams '{"funding_account": "dao.libre", "vote_threshold": 3, "voting_days": 1, "minimum_balance_to_create_proposals": "10.0000 LIBRE", "proposal_cost": "5.0000 LIBRE", "approver": "dao.libre"}' -p dao.libre@active
+    cleos push action dao.libre setparams '{"funding_account": "dao.libre", "vote_threshold": 3, "voting_days": 1, "minimum_vp_to_create_proposals": 10, "proposal_cost": "5.0000 LIBRE", "approver": "dao.libre"}' -p dao.libre@active
 }
 
 setup_swap() {
@@ -135,7 +135,7 @@ stake_for() {
         do
             for k in {1..5}
             do
-                cleos push action eosio.token transfer '{"from": "stakingte'$i$j$k'", "to": "stake.libre", "quantity": "10.0000 LIBRE", "memo": "stakefor:365"}' -p stakingte$i$j$k@active
+                cleos push action eosio.token transfer '{"from": "libreacco'$i$j$k'", "to": "stake.libre", "quantity": "10.0000 LIBRE", "memo": "stakefor:365"}' -p libreacco$i$j$k@active
             done
         done
     done
@@ -150,7 +150,7 @@ contribute_for() {
         do
             for k in {1..5}
             do
-                cleos push action btc.ptokens transfer '{"from": "stakingte'$i$j$k'", "to": "stake.libre", "quantity": "0.010000000 PBTC", "memo": "contributefor:365"}' -p stakingte$i$j$k@active
+                cleos push action btc.ptokens transfer '{"from": "libreacco'$i$j$k'", "to": "stake.libre", "quantity": "0.010000000 PBTC", "memo": "contributefor:365"}' -p libreacco$i$j$k@active
             done
         done
     done
@@ -164,12 +164,14 @@ swap() {
 }
 
 create_dao_proposal() {    
-    cleos push action dao.libre create '{"creator": "alice", "receiver": "alice", "name": "bigdeal", "title": "testing", "detail": "more info", "amount": "10.0000 LIBRE", "url": "test"}' -p alice@active
-    cleos push action eosio.token transfer '{"from": "alice", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:bigdeal"}' -p alice@active
+    cleos push action dao.libre create '{"creator": "libreacco111", "receiver": "alice", "name": "librelocal", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p libreacco111@active
+    cleos push action eosio.token transfer '{"from": "libreacco111", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal"}' -p libreacco111@active
 }
 
 vote_for_dao_proposal() {
-    cleos push action dao.libre votefor '{"voter": "stakingte112", "proposal": "bigdeal"}' -p stakingte112@active
+    cleos push action dao.libre votefor '{"voter": "libreacco111", "proposal": "librelocal"}' -p libreacco111@active
+    cleos push action dao.libre votefor '{"voter": "libreacco112", "proposal": "librelocal"}' -p libreacco112@active
+    cleos push action dao.libre votefor '{"voter": "libreacco113", "proposal": "librelocal"}' -p libreacco113@active
 }
 
 init() {
@@ -185,7 +187,9 @@ init() {
     add_referrals
     init_staking_contract
     init_reward_contract
-    # TODO: fix init_dao_contract
+    init_dao_contract
+    create_dao_proposal
+    vote_for_dao_proposal
     sleep 1
     contribute_for
     setup_swap
