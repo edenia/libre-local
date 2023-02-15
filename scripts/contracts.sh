@@ -19,11 +19,11 @@ register_bps() {
 }
 
 vote_producers() {
-    cleos push action eosio voteproducer '{"voter": "stakingte111", "producer": "bp2"}' -p stakingte111@active
-    cleos push action eosio voteproducer '{"voter": "stakingte112", "producer": "bp3"}' -p stakingte112@active
-    cleos push action eosio voteproducer '{"voter": "stakingte113", "producer": "bp4"}' -p stakingte113@active
-    cleos push action eosio voteproducer '{"voter": "stakingte114", "producer": "bp5"}' -p stakingte114@active
-    cleos push action eosio voteproducer '{"voter": "stakingte115", "producer": "bp2"}' -p stakingte115@active
+    cleos push action eosio voteproducer '{"voter": "stakingte111", "producers": ["bp2"]}' -p stakingte111@active
+    cleos push action eosio voteproducer '{"voter": "stakingte112", "producers": ["bp3"]}' -p stakingte112@active
+    cleos push action eosio voteproducer '{"voter": "stakingte113", "producers": ["bp4"]}' -p stakingte113@active
+    cleos push action eosio voteproducer '{"voter": "stakingte114", "producers": ["bp5"]}' -p stakingte114@active
+    cleos push action eosio voteproducer '{"voter": "stakingte115", "producers": ["bp2"]}' -p stakingte115@active
 }
 
 create_accounts() {
@@ -106,7 +106,7 @@ init_reward_contract() {
 }
 
 init_dao_contract() {
-    cleos push action dao.libre setparams '{"funding_account": "dao.libre", "vote_threshold": 3, "voting_days": 1, "minimum_balance_to_create_proposals": "10.0000 LIBRE", "proposal_cost": "5.0000 LIBRE", "approver": "dao.libre"}' -p dao.libre@active
+    cleos push action dao.libre setparams '{"funding_account": "dao.libre", "vote_threshold": 3, "voting_days": 1, "minimum_vp_to_create_proposals": 10, "proposal_cost": "5.0000 LIBRE", "approver": "dao.libre"}' -p dao.libre@active
 }
 
 setup_swap() {
@@ -164,12 +164,14 @@ swap() {
 }
 
 create_dao_proposal() {    
-    cleos push action dao.libre create '{"creator": "alice", "receiver": "alice", "name": "bigdeal", "title": "testing", "detail": "more info", "amount": "10.0000 LIBRE", "url": "test"}' -p alice@active
-    cleos push action eosio.token transfer '{"from": "alice", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:bigdeal"}' -p alice@active
+    cleos push action dao.libre create '{"creator": "stakingte111", "receiver": "alice", "name": "librelocal", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p stakingte111@active
+    cleos push action eosio.token transfer '{"from": "stakingte111", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal"}' -p stakingte111@active
 }
 
 vote_for_dao_proposal() {
-    cleos push action dao.libre votefor '{"voter": "stakingte112", "proposal": "bigdeal"}' -p stakingte112@active
+    cleos push action dao.libre votefor '{"voter": "stakingte111", "proposal": "librelocal"}' -p stakingte111@active
+    cleos push action dao.libre votefor '{"voter": "stakingte112", "proposal": "librelocal"}' -p stakingte112@active
+    cleos push action dao.libre votefor '{"voter": "stakingte113", "proposal": "librelocal"}' -p stakingte113@active
 }
 
 init() {
@@ -185,7 +187,9 @@ init() {
     add_referrals
     init_staking_contract
     init_reward_contract
-    # TODO: fix init_dao_contract
+    init_dao_contract
+    create_dao_proposal
+    vote_for_dao_proposal
     sleep 1
     contribute_for
     setup_swap
