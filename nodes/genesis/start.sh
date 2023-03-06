@@ -13,6 +13,8 @@ lock_wallet() {
 genesis() {
   echo "====================================== Start genesis ======================================"
   sed -i "s/TESTNET_EOSIO_PUBLIC_KEY/$TESTNET_EOSIO_PUBLIC_KEY/" genesis.json
+  sed -i "s/INITIAL_CHAIN_ID/$INITIAL_CHAIN_ID/" genesis.json
+
   nodeos \
   --config-dir config \
   --data-dir data \

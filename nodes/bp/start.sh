@@ -4,6 +4,21 @@ set -ex;
 ulimit -n 65535
 ulimit -s 64000
 
+# Set BP name
+sed -i "s/BP_NAME/$BP_NAME/" config.ini
+
+# Set server address
+sed -i "s/P2P_SERVER_ADDRESS/$P2P_SERVER_ADDRESS/" config.ini
+
+# Set peers
+sed -i "s/P2P_PEER_ADDRESS/$P2P_PEER_ADDRESS/" config.ini
+sed -i "s/P2P2_PEER_ADDRESS/$P2P2_PEER_ADDRESS/" config.ini
+sed -i "s/P2P3_PEER_ADDRESS/$P2P3_PEER_ADDRESS/" config.ini
+
+# Set initial key and chain id
+sed -i "s/TESTNET_EOSIO_PUBLIC_KEY/$TESTNET_EOSIO_PUBLIC_KEY/" /opt/genesis/genesis.json
+sed -i "s/INITIAL_CHAIN_ID/$INITIAL_CHAIN_ID/" /opt/genesis/genesis.json
+
 mkdir -p $CONFIG_DIR
 cp /opt/scripts/config.ini $CONFIG_DIR
 
@@ -13,7 +28,7 @@ nodeos=$"nodeos \
   --config-dir $CONFIG_DIR \
   --data-dir $DATA_DIR \
   --blocks-dir $DATA_DIR/blocks \
-  --signature-provider $TESTNET_NODE2_PUBLIC_KEY=KEY:$TESTNET_NODE2_PRIVATE_KEY" ;
+  --signature-provider $TESTNET_NODE_PUBLIC_KEY=KEY:$TESTNET_NODE_PRIVATE_KEY" ;
 
 term_handler() {
   if [ $pid -ne 0 ]; then
@@ -45,7 +60,7 @@ start_fresh_nodeos() {
 trap 'echo "Shutdown of EOSIO service...";kill ${!}; term_handler' 2 15;
 
 # Validate that the signing keys are not empty
-if [ -z "$TESTNET_NODE2_PUBLIC_KEY" ] || [ -z "$TESTNET_NODE2_PRIVATE_KEY" ]
+if [ -z "$TESTNET_NODE_PUBLIC_KEY" ] || [ -z "$TESTNET_NODE_PRIVATE_KEY" ]
 then
   echo "Signing keys not set...";
   exit 1;

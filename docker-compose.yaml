@@ -17,12 +17,13 @@ services:
     working_dir: /app
     command: bash -c "./start.sh"
     environment:
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
       TESTNET_EOSIO_PRIVATE_KEY: "${TESTNET_EOSIO_PRIVATE_KEY}"
       TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
-  bp2:
-    container_name: bp2
-    build: ./nodes/bp2
-    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}2
+  bp112:
+    container_name: bp112
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
     ports:
       - "8890:8888"
       - "9880:9876"
@@ -30,12 +31,19 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE_PRIVATE_KEY}"
-      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE_PUBLIC_KEY}"
-  bp3:
-    container_name: bp3
-    build: ./nodes/bp3
-    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}3
+      BP_NAME: "bp112"
+      P2P_SERVER_ADDRESS: "bp112:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: ""
+      P2P3_PEER_ADDRESS: ""
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE2_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE2_PUBLIC_KEY}"
+  bp113:
+    container_name: bp113
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
     ports:
       - "8891:8888"
       - "9882:9876"
@@ -43,12 +51,19 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_NODE2_PRIVATE_KEY: "${TESTNET_NODE2_PRIVATE_KEY}"
-      TESTNET_NODE2_PUBLIC_KEY: "${TESTNET_NODE2_PUBLIC_KEY}"
-  bp4:
-    container_name: bp4
-    build: ./nodes/bp4
-    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}4
+      BP_NAME: "bp113"
+      P2P_SERVER_ADDRESS: "bp113:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp112:9880"
+      P2P3_PEER_ADDRESS: ""
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE3_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE3_PUBLIC_KEY}"
+  bp114:
+    container_name: bp114
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
     ports:
       - "8892:8888"
       - "9884:9876"
@@ -56,12 +71,19 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_NODE3_PRIVATE_KEY: "${TESTNET_NODE3_PRIVATE_KEY}"
-      TESTNET_NODE3_PUBLIC_KEY: "${TESTNET_NODE3_PUBLIC_KEY}"
-  bp5:
-    container_name: bp5
-    build: ./nodes/bp5
-    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}5
+      BP_NAME: "bp114"
+      P2P_SERVER_ADDRESS: "bp114:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp112:9880"
+      P2P3_PEER_ADDRESS: "bp113:9882"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE4_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE4_PUBLIC_KEY}"
+  bp115:
+    container_name: bp115
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
     ports:
       - "8893:8888"
       - "9886:9876"
@@ -69,5 +91,389 @@ services:
     working_dir: /opt/scripts
     command: bash -c "./start.sh"
     environment:
-      TESTNET_NODE4_PRIVATE_KEY: "${TESTNET_NODE4_PRIVATE_KEY}"
-      TESTNET_NODE4_PUBLIC_KEY: "${TESTNET_NODE4_PUBLIC_KEY}"
+      BP_NAME: "bp115"
+      P2P_SERVER_ADDRESS: "bp115:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp113:9882"
+      P2P3_PEER_ADDRESS: "bp114:9884"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE5_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE5_PUBLIC_KEY}"
+  bp121:
+    container_name: bp121
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8894:8888"
+      - "9888:9876"
+      - "9889:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp121"
+      P2P_SERVER_ADDRESS: "bp121:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE6_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE6_PUBLIC_KEY}"
+
+  bp122:
+    container_name: bp122
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8895:8888"
+      - "9890:9876"
+      - "9891:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp122"
+      P2P_SERVER_ADDRESS: "bp122:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE7_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE7_PUBLIC_KEY}"
+
+  bp123:
+    container_name: bp123
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8896:8888"
+      - "9892:9876"
+      - "9893:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp123"
+      P2P_SERVER_ADDRESS: "bp123:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE8_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE8_PUBLIC_KEY}"
+
+  bp124:
+    container_name: bp124
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8897:8888"
+      - "9895:9876"
+      - "9896:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp124"
+      P2P_SERVER_ADDRESS: "bp124:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE9_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE9_PUBLIC_KEY}"
+
+  bp125:
+    container_name: bp125
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8898:8888"
+      - "9897:9876"
+      - "9899:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp125"
+      P2P_SERVER_ADDRESS: "bp125:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE10_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE10_PUBLIC_KEY}"
+
+  bp131:
+    container_name: bp131
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8850:8888"
+      - "9850:9876"
+      - "9851:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp131"
+      P2P_SERVER_ADDRESS: "bp131:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE11_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE11_PUBLIC_KEY}"
+
+  bp132:
+    container_name: bp132
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8851:8888"
+      - "9852:9876"
+      - "9853:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp132"
+      P2P_SERVER_ADDRESS: "bp132:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE12_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE12_PUBLIC_KEY}"
+
+  bp133:
+    container_name: bp133
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8852:8888"
+      - "9854:9876"
+      - "9855:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp133"
+      P2P_SERVER_ADDRESS: "bp133:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE13_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE13_PUBLIC_KEY}"
+
+  bp134:
+    container_name: bp134
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8853:8888"
+      - "9856:9876"
+      - "9857:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp134"
+      P2P_SERVER_ADDRESS: "bp134:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE14_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE14_PUBLIC_KEY}"
+
+  bp135:
+    container_name: bp135
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8854:8888"
+      - "9858:9876"
+      - "9859:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp135"
+      P2P_SERVER_ADDRESS: "bp135:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE15_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE15_PUBLIC_KEY}"
+
+  bp141:
+    container_name: bp141
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8855:8888"
+      - "9860:9876"
+      - "9861:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp141"
+      P2P_SERVER_ADDRESS: "bp141:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE16_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE16_PUBLIC_KEY}"
+
+  bp142:
+    container_name: bp142
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8856:8888"
+      - "9862:9876"
+      - "9863:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp142"
+      P2P_SERVER_ADDRESS: "bp142:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE17_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE17_PUBLIC_KEY}"
+
+  bp143:
+    container_name: bp143
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8857:8888"
+      - "9864:9876"
+      - "9865:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp143"
+      P2P_SERVER_ADDRESS: "bp143:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE18_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE18_PUBLIC_KEY}"
+
+  bp144:
+    container_name: bp144
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8858:8888"
+      - "9866:9876"
+      - "9867:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp144"
+      P2P_SERVER_ADDRESS: "bp144:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE19_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE19_PUBLIC_KEY}"
+
+  bp145:
+    container_name: bp145
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8859:8888"
+      - "9868:9876"
+      - "9869:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp145"
+      P2P_SERVER_ADDRESS: "bp145:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE20_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE20_PUBLIC_KEY}"
+
+  bp151:
+    container_name: bp151
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8860:8888"
+      - "9870:9876"
+      - "9871:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp151"
+      P2P_SERVER_ADDRESS: "bp151:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE21_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE21_PUBLIC_KEY}"
+
+  bp152:
+    container_name: bp152
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8861:8888"
+      - "9872:9876"
+      - "9873:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp152"
+      P2P_SERVER_ADDRESS: "bp152:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE22_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE22_PUBLIC_KEY}"
+
+  bp153:
+    container_name: bp153
+    build: ./nodes/bp
+    image: ${DOCKER_REGISTRY}/${IMAGE_NAME}
+    ports:
+      - "8862:8888"
+      - "9874:9876"
+      - "9875:9879"
+    working_dir: /opt/scripts
+    command: bash -c "./start.sh"
+    environment:
+      BP_NAME: "bp153"
+      P2P_SERVER_ADDRESS: "bp153:9876"
+      P2P_PEER_ADDRESS: "genesis:9876"
+      P2P2_PEER_ADDRESS: "bp114:9884"
+      P2P3_PEER_ADDRESS: "bp115:9886"
+      INITIAL_CHAIN_ID: "${INITIAL_CHAIN_ID}"
+      TESTNET_EOSIO_PUBLIC_KEY: "${TESTNET_EOSIO_PUBLIC_KEY}"
+      TESTNET_NODE_PRIVATE_KEY: "${TESTNET_NODE23_PRIVATE_KEY}"
+      TESTNET_NODE_PUBLIC_KEY: "${TESTNET_NODE23_PUBLIC_KEY}"
