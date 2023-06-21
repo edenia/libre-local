@@ -6,31 +6,56 @@ fi
 
 CUSTOM_ACCOUNTS=(alice bob pip bitcoinlibre)
 MAIN_ACCOUNTS=(stake.libre farm.libre reward.libre dao.libre)
-BLOCK_PRODUCERS=(bp2 bp3 bp4 bp5)
-BLOCK_PRODUCERS_KEYS=($TESTNET_NODE_PUBLIC_KEY $TESTNET_NODE2_PUBLIC_KEY $TESTNET_NODE3_PUBLIC_KEY $TESTNET_NODE4_PUBLIC_KEY)
+BLOCK_PRODUCERS=($(ls secrets/*.priv | cut -d. -f1 | xargs -n 1 basename))
+BLOCK_PRODUCERS_KEYS=($(cat secrets/*.pub))
 
 register_bps() {
     # TODO: check lenght of bps <= lenght of keys
     for (( i = 0; i < ${#BLOCK_PRODUCERS[@]}; i++ )); do
-        cleos create account eosio "${BLOCK_PRODUCERS[$i]}" ${BLOCK_PRODUCERS_KEYS[$i]} 
+        cleos create account eosio "${BLOCK_PRODUCERS[$i]}" ${BLOCK_PRODUCERS_KEYS[$i]}
         cleos push action eosio.libre setperm '{"acc": '"${BLOCK_PRODUCERS[$i]}"', "perms": [["createacc",1],["regprod",1]]}' -p eosio.libre@active
         cleos push action eosio regproducer '{"producer": '"${BLOCK_PRODUCERS[$i]}"', "producer_key": '"${BLOCK_PRODUCERS_KEYS[$i]}"', "url": "http://producer.com", "location": 123}' -p ${BLOCK_PRODUCERS[$i]}@active
     done
 }
 
 vote_producers() {
-    cleos push action eosio voteproducer '{"voter": "libreacco111", "producers": ["bp2"]}' -p libreacco111@active
-    cleos push action eosio voteproducer '{"voter": "libreacco112", "producers": ["bp3"]}' -p libreacco112@active
-    cleos push action eosio voteproducer '{"voter": "libreacco113", "producers": ["bp4"]}' -p libreacco113@active
-    cleos push action eosio voteproducer '{"voter": "libreacco114", "producers": ["bp5"]}' -p libreacco114@active
-    cleos push action eosio voteproducer '{"voter": "libreacco115", "producers": ["bp2"]}' -p libreacco115@active
+    echo "Start voting for producers..."
+    i=1
+    j=1
+
+    for producer in ${BLOCK_PRODUCERS[@]}
+    do
+        cleos push action eosio voteproducer '{"voter": "libreacco1'$i$j'", "producers": ['$producer']}' -p libreacco1$i$j@active
+
+        j=$((j+1))
+
+        # Reset the iterator if it reaches 6
+        if [ $j -eq 6 ]; then
+            j=1
+            i=$((i+1))
+        fi
+    done
+    echo "Finish  voting for producers..."
+}
+
+create_account() {
+    if [ "$#" -eq 2 ]; then
+        pk2=$2
+    else
+        pk2=$3
+    fi
+    
+    account=$1
+    pk=$2
+
+    cleos create account eosio "$account" "$pk" "$pk2"
+    cleos push action eosio setalimits '{"authorizer": "eosio", "account": '"$account"', "ram": 10000000, "net": 2000, "cpu": 2000}' -p eosio@active
 }
 
 create_accounts() {
     echo "Start create accounts..."
     for account in ${CUSTOM_ACCOUNTS[*]}; do
-        cleos create account eosio "$account" $DEFAULT_PUBLIC_KEY
-        cleos push action eosio setalimits '{"authorizer": "eosio", "account": '"$account"', "ram": 10000000, "net": 2000, "cpu": 2000}' -p eosio@active
+        create_account $account $DEFAULT_PUBLIC_KEY
     done
     echo "Finish create accounts..."
 }
@@ -163,15 +188,79 @@ swap() {
     # cleos push action reward.libre claim '["BTCUSDD", "alice"]' -p alice@active
 }
 
-create_dao_proposal() {    
+create_dao_proposal() {
+    # proposal 1
     cleos push action dao.libre create '{"creator": "libreacco111", "receiver": "alice", "name": "librelocal", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p libreacco111@active
     cleos push action eosio.token transfer '{"from": "libreacco111", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal"}' -p libreacco111@active
+
+    # proposal 2
+    cleos push action dao.libre create '{"creator": "libreacco112", "receiver": "alice", "name": "librelocal2", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p libreacco112@active
+    cleos push action eosio.token transfer '{"from": "libreacco112", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal2"}' -p libreacco112@active
+
+    # proposal 3
+    cleos push action dao.libre create '{"creator": "libreacco113", "receiver": "alice", "name": "librelocal3", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p libreacco113@active
+    cleos push action eosio.token transfer '{"from": "libreacco113", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal3"}' -p libreacco113@active
+
+    # proposal 4
+    cleos push action dao.libre create '{"creator": "libreacco114", "receiver": "alice", "name": "librelocal4", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p libreacco114@active
+    cleos push action eosio.token transfer '{"from": "libreacco114", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal4"}' -p libreacco114@active
+
+    # proposal 5
+    cleos push action dao.libre create '{"creator": "libreacco115", "receiver": "alice", "name": "librelocal5", "title": "testing", "detail": "more info", "amount": "100.0000 LIBRE", "url": "libre.org"}' -p libreacco115@active
+    cleos push action eosio.token transfer '{"from": "libreacco115", "to": "dao.libre", "quantity": "5.0000 LIBRE", "memo": "payment:librelocal5"}' -p libreacco115@active
 }
 
 vote_for_dao_proposal() {
-    cleos push action dao.libre votefor '{"voter": "libreacco111", "proposal": "librelocal"}' -p libreacco111@active
-    cleos push action dao.libre votefor '{"voter": "libreacco112", "proposal": "librelocal"}' -p libreacco112@active
-    cleos push action dao.libre votefor '{"voter": "libreacco113", "proposal": "librelocal"}' -p libreacco113@active
+    cleos push action dao.libre votefor '{"voter": "libreacco111", "proposal": "librelocal4"}' -p libreacco111@active
+    cleos push action dao.libre votefor '{"voter": "libreacco112", "proposal": "librelocal4"}' -p libreacco112@active
+    cleos push action dao.libre votefor '{"voter": "libreacco113", "proposal": "librelocal4"}' -p libreacco113@active
+    cleos push action dao.libre votefor '{"voter": "libreacco114", "proposal": "librelocal4"}' -p libreacco114@active
+    cleos push action dao.libre votefor '{"voter": "libreacco115", "proposal": "librelocal4"}' -p libreacco115@active
+    cleos push action dao.libre votefor '{"voter": "libreacco121", "proposal": "librelocal4"}' -p libreacco121@active
+    cleos push action dao.libre votefor '{"voter": "libreacco122", "proposal": "librelocal4"}' -p libreacco122@active
+    cleos push action dao.libre votefor '{"voter": "libreacco123", "proposal": "librelocal4"}' -p libreacco123@active
+    cleos push action dao.libre votefor '{"voter": "libreacco124", "proposal": "librelocal4"}' -p libreacco124@active
+    cleos push action dao.libre votefor '{"voter": "libreacco125", "proposal": "librelocal4"}' -p libreacco125@active
+    cleos push action dao.libre votefor '{"voter": "libreacco131", "proposal": "librelocal4"}' -p libreacco131@active
+    cleos push action dao.libre votefor '{"voter": "libreacco132", "proposal": "librelocal4"}' -p libreacco132@active
+    cleos push action dao.libre votefor '{"voter": "libreacco133", "proposal": "librelocal4"}' -p libreacco133@active
+    cleos push action dao.libre votefor '{"voter": "libreacco134", "proposal": "librelocal4"}' -p libreacco134@active
+    cleos push action dao.libre votefor '{"voter": "libreacco135", "proposal": "librelocal4"}' -p libreacco135@active
+    cleos push action dao.libre votefor '{"voter": "libreacco141", "proposal": "librelocal4"}' -p libreacco141@active
+    cleos push action dao.libre votefor '{"voter": "libreacco142", "proposal": "librelocal4"}' -p libreacco142@active
+    cleos push action dao.libre votefor '{"voter": "libreacco143", "proposal": "librelocal4"}' -p libreacco143@active
+    cleos push action dao.libre votefor '{"voter": "libreacco144", "proposal": "librelocal4"}' -p libreacco144@active
+    cleos push action dao.libre votefor '{"voter": "libreacco145", "proposal": "librelocal4"}' -p libreacco145@active
+    cleos push action dao.libre votefor '{"voter": "libreacco151", "proposal": "librelocal4"}' -p libreacco151@active
+    cleos push action dao.libre votefor '{"voter": "libreacco152", "proposal": "librelocal4"}' -p libreacco152@active
+    cleos push action dao.libre votefor '{"voter": "libreacco153", "proposal": "librelocal4"}' -p libreacco153@active
+    cleos push action dao.libre votefor '{"voter": "libreacco154", "proposal": "librelocal4"}' -p libreacco154@active
+    cleos push action dao.libre votefor '{"voter": "libreacco155", "proposal": "librelocal4"}' -p libreacco155@active
+}
+
+setup_board() {
+    AUTHORITY='{"threshold": 2, "keys": [], "accounts":[{"permission":{"actor": "alice", "permission":"active"}, "weight": 1}, {"permission":{"actor": "bob", "permission":"active"}, "weight": 1}, {"permission":{"actor": "pip", "permission":"active"}, "weight": 1}], "waits": [] }'
+    create_account "board.libre" $DEFAULT_PUBLIC_KEY
+    cleos set account permission "board.libre" active "$AUTHORITY" owner -p board.libre@owner
+    cleos set account permission "board.libre" owner "$AUTHORITY" -p board.libre@owner
+}
+
+udpate_multisig_permissions() {
+    AUTHORITY='{"threshold": 1, "keys": [], "accounts":[{"permission":{"actor": "board.libre", "permission":"active"}, "weight": 1}], "waits": [] }'
+    AUTHORITY2='{"threshold": 1, "keys": [], "accounts":[{"permission":{"actor": "board.libre", "permission":"active"}, "weight": 1}, {"permission":{"actor": "stake.libre", "permission":"eosio.code"}, "weight": 1}], "waits": [] }'
+    cleos set account permission "stake.libre" owner "$AUTHORITY" -p stake.libre@owner
+    cleos set account permission "stake.libre" active "$AUTHORITY2" owner -p stake.libre@owner
+
+    AUTHORITY_DAO='{"threshold": 1, "keys": [], "accounts":[{"permission":{"actor": "eosio.prods", "permission":"active"}, "weight": 1}], "waits": [] }'
+    AUTHORITY_DAO2='{"threshold": 1, "keys": [], "accounts":[{"permission":{"actor": "dao.libre", "permission":"eosio.code"}, "weight": 1}, {"permission":{"actor": "eosio.prods", "permission":"active"}, "weight": 1}], "waits": [] }'
+    cleos set account permission "dao.libre" active "$AUTHORITY_DAO2" owner -p dao.libre@owner
+    cleos set account permission "dao.libre" owner "$AUTHORITY_DAO" -p dao.libre@owner
+
+    # cleos push action eosio.msig approve '{"proposer": "alice", "proposal_name": "prop3", "level": {"actor": "alice", "permission":"active"}}' -p alice@active
+    # cleos push action eosio.msig approve '{"proposer": "alice", "proposal_name": "prop3", "level": {"actor":"bob","permission":"active"}}' -p bob@active
+    # cleos push action eosio.msig approve '{"proposer": "alice", "proposal_name": "prop3", "level": {"actor":"pip","permission":"active"}}' -p pip@active
+
+    # cleos push action eosio.msig exec '{"proposer": "alice", "proposal_name": "prop3", "executer": "alice"}' -p alice@active
 }
 
 init() {
@@ -194,6 +283,9 @@ init() {
     contribute_for
     setup_swap
     swap
+    setup_board
+    udpate_multisig_permissions
+
     echo "Contracts are initialized"
 }
 

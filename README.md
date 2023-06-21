@@ -1,5 +1,7 @@
 # Libre Testnet Local Network
 
+<!-- README IS OUTDATED -->
+
 ## Description
 
 Libre Local provides a quick way to setup a Local Testnet network for development.
@@ -73,6 +75,48 @@ If you wish to use the Smart Contracts currently running on Libre Mainnet or Lib
 ```
 
 > **Note:** To run a modified version of the contracts, you can update them, get the wasm and put them in the `./wasm` folder with their respective contract names, reset the network and run the previous command.
+
+## Setup Network
+
+### Only the first time
+
+1. Create a working wallet
+
+```sh
+source run.sh create_wallet
+```
+
+2. Create a docker network for the containers
+
+```sh
+source run.sh create_network
+```
+
+### On every new working session
+
+1. Unlock the working wallet
+
+```sh
+source run.sh unlock_wallet
+```
+
+2. Start genesis node
+
+```sh
+source run.sh genesis
+```
+
+3. Start peering nodes `source run.sh start_network <bp_label> <total_bps>`
+
+```sh
+source run.sh start_network bp 5
+```
+
+4. Setup the network witht the current official Libre Contracts
+
+```sh
+./scripts/contracts.sh
+```
 
 ## File structure
 

@@ -1,0 +1,488 @@
+{
+  "version": "eosio::abi/1.2",
+  "structs": [
+    {
+      "name": "ConfigTable",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "inscription_price",
+          "type": "asset"
+        },
+        {
+          "name": "inscription_payment_contract",
+          "type": "name"
+        },
+        {
+          "name": "transfer_out_price_sats",
+          "type": "uint64"
+        },
+        {
+          "name": "maker_fee",
+          "type": "uint64"
+        },
+        {
+          "name": "taker_fee",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "InscriptionsTable",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "inscription_id",
+          "type": "string"
+        },
+        {
+          "name": "inscription_number",
+          "type": "uint64"
+        },
+        {
+          "name": "inscribed_at",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "ListingsTable",
+      "base": "",
+      "fields": [
+        {
+          "name": "rowId",
+          "type": "uint64"
+        },
+        {
+          "name": "list_status",
+          "type": "string"
+        },
+        {
+          "name": "buy_now_price",
+          "type": "asset"
+        },
+        {
+          "name": "buy_now_contract",
+          "type": "name"
+        },
+        {
+          "name": "auction_end",
+          "type": "uint64"
+        },
+        {
+          "name": "min_bid",
+          "type": "asset"
+        },
+        {
+          "name": "bid_contract",
+          "type": "name"
+        },
+        {
+          "name": "last_bid",
+          "type": "asset"
+        },
+        {
+          "name": "last_bidder",
+          "type": "name"
+        },
+        {
+          "name": "keywords",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "RequestsTable",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "WithdrawalsTable",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "inscription_id",
+          "type": "string"
+        },
+        {
+          "name": "inscription_number",
+          "type": "uint64"
+        },
+        {
+          "name": "destination",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "uint64"
+        },
+        {
+          "name": "outgoing_transaction_id",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "createord",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "inscription_id",
+          "type": "string"
+        },
+        {
+          "name": "inscription_number",
+          "type": "uint64"
+        },
+        {
+          "name": "inscribed_at",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "delist",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "externalsend",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "destination",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "internalsend",
+      "base": "",
+      "fields": [
+        {
+          "name": "to",
+          "type": "name"
+        },
+        {
+          "name": "id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "list",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "buy_now_price",
+          "type": "asset"
+        },
+        {
+          "name": "buy_now_contract",
+          "type": "name"
+        },
+        {
+          "name": "min_bid",
+          "type": "asset"
+        },
+        {
+          "name": "bid_contract",
+          "type": "name"
+        },
+        {
+          "name": "auction_end",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "remrequest",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "setconfig",
+      "base": "",
+      "fields": [
+        {
+          "name": "price",
+          "type": "asset"
+        },
+        {
+          "name": "contract",
+          "type": "name"
+        },
+        {
+          "name": "transfer_out_sats",
+          "type": "uint64"
+        },
+        {
+          "name": "maker_fee",
+          "type": "uint64"
+        },
+        {
+          "name": "taker_fee",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "setkeywords",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "keywords",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "setlistst",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "status",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "setouttx",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "txid",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "test",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "updateord",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "domain",
+          "type": "string"
+        },
+        {
+          "name": "inscription_id",
+          "type": "string"
+        },
+        {
+          "name": "inscription_number",
+          "type": "uint64"
+        },
+        {
+          "name": "inscribed_at",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "types": [],
+  "actions": [
+    {
+      "name": "createord",
+      "type": "createord",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "delist",
+      "type": "delist",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "externalsend",
+      "type": "externalsend",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "internalsend",
+      "type": "internalsend",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "list",
+      "type": "list",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "remrequest",
+      "type": "remrequest",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setconfig",
+      "type": "setconfig",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setkeywords",
+      "type": "setkeywords",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setlistst",
+      "type": "setlistst",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setouttx",
+      "type": "setouttx",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "test",
+      "type": "test",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "updateord",
+      "type": "updateord",
+      "ricardian_contract": ""
+    }
+  ],
+  "tables": [
+    {
+      "name": "config",
+      "type": "ConfigTable",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": []
+    },
+    {
+      "name": "inscriptions",
+      "type": "InscriptionsTable",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": []
+    },
+    {
+      "name": "listings",
+      "type": "ListingsTable",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": []
+    },
+    {
+      "name": "requests",
+      "type": "RequestsTable",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": []
+    },
+    {
+      "name": "withdrawals",
+      "type": "WithdrawalsTable",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": []
+    }
+  ],
+  "ricardian_clauses": [],
+  "variants": [],
+  "action_results": [],
+  "abi_extensions": [],
+  "error_messages": []
+}

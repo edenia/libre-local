@@ -11,35 +11,39 @@ fast-run: pull-images ##@devops Run the docker image
 
 run: ##@devops Run the docker image
 	make -B genesis
-	make -B bp2
-	make -B bp3
-	make -B bp4
-	make -B bp5
+	
+	# $(call run-bp,bp,1,1,2)
+	# $(call run-bp,bp,1,1,3)
+	# $(call run-bp,bp,1,1,4)
+	# $(call run-bp,bp,1,1,5)
+	# $(call run-bp,bp,1,2,1)
+	# $(call run-bp,bp,1,2,2)
+	# $(call run-bp,bp,1,2,3)
+	# $(call run-bp,bp,1,2,4)
+	# $(call run-bp,bp,1,2,5)
+	# $(call run-bp,bp,1,3,1)
+	# $(call run-bp,bp,1,3,2)
+	# $(call run-bp,bp,1,3,3)
+	# $(call run-bp,bp,1,3,4)
+	# $(call run-bp,bp,1,4,1)
+	# $(call run-bp,bp,1,4,2)
+	# $(call run-bp,bp,1,4,3)
+	# $(call run-bp,bp,1,4,4)
+	# $(call run-bp,bp,1,4,5)
+	# $(call run-bp,bp,1,5,1)
+	# $(call run-bp,bp,1,5,2)
+	# $(call run-bp,bp,1,5,3)
 
 genesis:
 	@docker-compose stop genesis
 	@docker-compose up -d --build genesis
 	@echo "done genesis"
 
-bp2:
-	@docker-compose stop bp2
-	@docker-compose up -d --build bp2
-	@echo "done bp2"
-
-bp3:
-	@docker-compose stop bp3
-	@docker-compose up -d --build bp3
-	@echo "done bp3"
-
-bp4:
-	@docker-compose stop bp4
-	@docker-compose up -d --build bp4
-	@echo "done bp4"
-
-bp5:
-	@docker-compose stop bp5
-	@docker-compose up -d --build bp5
-	@echo "done bp5"
+define run-bp
+	@docker-compose stop $(1)$(2)$(3)$(4)
+	@docker-compose up -d --build $(1)$(2)$(3)$(4)
+	@echo "done $(1)$(2)$(3)$(4)"
+endef
 
 stop:
 	@docker-compose stop
@@ -49,7 +53,3 @@ build-docker:
 
 push-image: ##@devops Push the docker image to the registry
 	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME):$(VERSION)
-	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)2:$(VERSION)
-	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)3:$(VERSION)
-	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)4:$(VERSION)
-	@docker push $(DOCKER_REGISTRY)/$(IMAGE_NAME)5:$(VERSION)
