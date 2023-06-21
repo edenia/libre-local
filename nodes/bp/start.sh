@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-echo "Starting Phoenix Testnet Block Producer Node...";
+echo "Starting Libre Testnet Block Producer Node...";
 set -ex;
 ulimit -n 65535
 ulimit -s 64000
