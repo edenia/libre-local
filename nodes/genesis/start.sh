@@ -61,6 +61,8 @@ setup_accounts() {
     "reward.libre" \
     "swap.libre" \
     "sfee.libre" \
+    "ordinals" \
+    "inscriptions" \
   )
 
   for account in "${accounts[@]}"; do
@@ -134,6 +136,8 @@ setup_contracts() {
   cleos set contract reward.libre /staking-contract reward.wasm reward.abi
   cleos set contract swap.libre /swap swap.libre.wasm swap.libre.abi
   cleos set contract sfee.libre /swap sfee.libre.wasm sfee.libre.abi
+  cleos set contract ordinals /ordinals ordinals.wasm ordinals.abi
+  cleos set contract inscriptions /inscription inscriptions.wasm inscriptions.abi
 
   cleos push action eosio.token create '[ "eosio", "10000000000.0000 LIBRE" ]' -p eosio.token@active
   cleos push action eosio.token issue '[ "eosio", "1000000000.0000 LIBRE", "memo" ]' -p eosio@active

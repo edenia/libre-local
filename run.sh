@@ -19,6 +19,8 @@ create_wallet() {
             >./secrets/librewallet_wallet_password.txt
     cleos wallet open -n librewallet
     unlock_wallet
+
+    cleos wallet import -n librewallet --private-key $DEFAULT_PRIVATE_KEY
     cleos wallet import -n librewallet --private-key $TESTNET_EOSIO_PRIVATE_KEY
 }
 
@@ -35,7 +37,13 @@ build_single_node() {
     docker build -t eoscostarica506/libre-node:latest -f ./nodes/bp/Dockerfile ./nodes/bp/
 }
 
-start_genesis() {
+stop_network() {
+    docker stop $(docker ps -a -q)
+    docker rm $(docker ps --filter "status=exited" -q)
+    # docker network rm libre-network
+}
+
+genesis() {
     rm secrets/*.priv secrets/*.pub
 
     docker run -d --name genesis --network libre-network -p 8888:8888 -p 9876:9876 -p 9879:9879 \
@@ -48,6 +56,8 @@ start_genesis() {
     -v $(pwd)/wasm/libre-referrals:/referral \
     -v $(pwd)/wasm/dao-contract:/btclgovernan \
     -v $(pwd)/wasm/swap-contract:/swap \
+    -v $(pwd)/wasm/ordinals-contract:/ordinals \
+    -v $(pwd)/wasm/inscription-contract:/inscription \
     eoscostarica506/libre-genesis-node:latest bash -c "./start.sh"
 }
 
@@ -63,7 +73,7 @@ start_single_node() {
     TESTNET_NODE_PRIVATE_KEY=$9
     TESTNET_NODE_PUBLIC_KEY=${10}
 
-    docker run -d --name $NAME --network libre-network -p $PORT -p $PORT2 -p $PORT3 \
+    docker run -d --name libre-$NAME --network libre-network -p $PORT -p $PORT2 -p $PORT3 \
     -e BP_NAME=$NAME \
     -e P2P_SERVER_ADDRESS=$P2P_SERVER_ADDRESS \
     -e P2P_PEER_ADDRESS=$P2P_PEER_ADDRESS \
@@ -118,8 +128,8 @@ start_network() {
     echo "$label$i$j"
 
     keys=($(cleos create key --to-console))
-    pub=${keys[5]}
-    priv=${keys[2]}
+    pub=${keys[6]}
+    priv=${keys[3]}
     cleos wallet import -n librewallet --private-key $priv
 
     echo $pub >./secrets/$label$i$j.pub
@@ -143,9 +153,6 @@ start_network() {
     fi
     done
 }
-
-unlock_wallet
-import_key $DEFAULT_PRIVATE_KEY
 
 func=$1 
 shift
