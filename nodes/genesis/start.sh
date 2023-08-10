@@ -20,6 +20,7 @@ genesis() {
   --data-dir data \
   --blocks-dir blocks \
   --delete-all-blocks \
+  --disable-replay-opts \
   --signature-provider $TESTNET_EOSIO_PUBLIC_KEY=KEY:$TESTNET_EOSIO_PRIVATE_KEY \
   --genesis-json genesis.json \
   >> "nodeos.log" 2>&1 &

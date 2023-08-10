@@ -28,6 +28,7 @@ nodeos=$"nodeos \
   --config-dir $CONFIG_DIR \
   --data-dir $DATA_DIR \
   --blocks-dir $DATA_DIR/blocks \
+  --disable-replay-opts \
   --signature-provider $TESTNET_NODE_PUBLIC_KEY=KEY:$TESTNET_NODE_PRIVATE_KEY" ;
 
 term_handler() {
