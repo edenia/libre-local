@@ -149,7 +149,7 @@ setup_swap() {
     $CLEOS push action swap.libre openext '["'"$YOUR_ACCOUNT"'", "'"$YOUR_ACCOUNT"'", {"contract":"'"$BTCCONTRACT"'", "sym":"'"$BTCPRECISION"','"$BTCSYMBOL"'"}]' -p $YOUR_ACCOUNT
     $CLEOS push action $BTCCONTRACT transfer '["'"$YOUR_ACCOUNT"'", "swap.libre", "1.000000000 '"$BTCSYMBOL"'", "memo"]' -p $YOUR_ACCOUNT
     $CLEOS push action $USDCONTRACT transfer '["'"$YOUR_ACCOUNT"'", "swap.libre", "20000.000000000 '"$USDSYMBOL"'", "memo"]' -p $YOUR_ACCOUNT
-    $CLEOS push action swap.libre inittoken '["'"$YOUR_ACCOUNT"'", "9,BTCUSDD", {"contract":"'"$BTCCONTRACT"'", "quantity":"1.000000000 '"$BTCSYMBOL"'"}, {"contract":"'"$USDCONTRACT"'", "quantity":"20000.000000000 '"$USDSYMBOL"'"}, 10, "sfee.libre"]' -p $YOUR_ACCOUNT -p swap.libre
+    $CLEOS push action swap.libre inittoken '["'"$YOUR_ACCOUNT"'", "9,BTCUSD", {"contract":"'"$BTCCONTRACT"'", "quantity":"1.000000000 '"$BTCSYMBOL"'"}, {"contract":"'"$USDCONTRACT"'", "quantity":"20000.000000000 '"$USDSYMBOL"'"}, 10, "sfee.libre"]' -p $YOUR_ACCOUNT -p swap.libre
 }
 
 stake_for() {
