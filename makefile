@@ -15,8 +15,8 @@ push-docker-images:
 	@echo "Pushing docker containers..."
 
 	@echo "1. Pushing genesis image..."
-	@docker push $(DOCKER_REGISTRY)/libre-genesis-node:$(VERSION)
+	@docker push $(DOCKER_REGISTRY)/libre-genesis-node:$(LATEST_TAG)
 
 	@echo "2. Pushing node image..."
-	@docker push $(DOCKER_REGISTRY)/libre-node:$(VERSION)
+	@docker push $(DOCKER_REGISTRY)/libre-node:$(LATEST_TAG)
 	
