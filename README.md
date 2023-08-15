@@ -1,72 +1,63 @@
 # Libre Testnet Local Network
 
-<!-- README IS OUTDATED -->
-
 ## Description
 
 Libre Local provides a quick way to setup a Local Testnet network for development.
 The primary benefits of containers are consistency across different environments and deployment ease.
 
-This project works along with a [full-stack-boilerplate](https://github.com/eoscostarica/full-stack-boilerplate) to help you build your AntelopeIO dApp.
-
 ## Why to use a local environment?
 
-A local environment provides a series of benefits that you cannot in a public network, for example, with Libre locally, transaction costs are avoided since they are carried out in a development environment and not in production, also, they are accessed to system contracts to modify them as appropriate.
+A local environment provides a series of benefits that you cannot in a public network, for example, with Libre Local, transaction costs are avoided since they are carried out in a development environment and not in production, also, they are access to system contracts to modify them as appropriate.
 
-In a Blockchain network every transaction creates an immutable record and everything that is modified can affect both positively and negatively the users within it, it is for this reason that it is essential to have an environment premises where functionality tests, performance tests, stress tests, among others, can be carried out without the risk of producing a failure that affects users.
+In a Blockchain network every transaction creates an immutable record and everything that is modified can affect both positively and negatively the users within it, for this reason it is essential to have an environment premises where functionality tests, performance tests, stress tests, among others, can be carried out without the risk of producing a failures that can affects users.
 
-Finally, a factor to consider is the time that is reduced in the initial configuration of any network, this image allows directly, with only two commands to have the network installed and ready to perform functionality tests as necessary.
+Finally, a factor to consider is the initial reduced time in configuration of any network, this image allows directly, with only two commands to have the network installed and ready to perform functionality tests as necessary.
 
 ## Contracts
 
-The AntelopeIO image is based on the `eosio.system`, `eosio.token` and `eosio.msig` contracts for its configuration. Your code can be found at [this link](https://github.com/AntelopeIO/reference-contracts/tree/main/contracts).
+The AntelopeIO image is based on the `eosio.system`, `eosio.token` and `eosio.msig` contracts for its configuration. The code can be found at [this link](https://github.com/AntelopeIO/reference-contracts/tree/main/contracts).
 
 1. **eosio.system**: Defines the structures and actions needed for blockchain's core functionality.
 2. **eosio.token**: Defines the structures and actions that allow users to create, issue, and manage tokens for AntelopeIO-based blockchains.
 3. **eosio.msig**: Allows the creation of proposed transactions that require authorization from a list of accounts.
-
-### Deployable projects
-
-1. Eden: Take a look at the smart contract code [here](https://github.com/gofractally/Eden/tree/main/contracts).
-2. simpleassets: A simple standard for digital assets on AntelopeIO blockchains: Non-Fungible Tokens (NFTs), Fungible Tokens (FTs), and Non-Transferable Tokens (NTTs). Take a look at the smart contract code [here](https://github.com/CryptoLions/SimpleAssets).
-3. atomicassets: AtomicAssets is a Non Fungible Token (NFT) standard for eosio blockchains developed by pink.network. Take a look at the smart contract code [here](https://github.com/pinknetworkx/atomicassets-contract).
-4. dgoods: dGoods is an open source and free standard for handling the virtual representation of items, both digital and physical, on the EOS blockchain led by Mythical Games. Take a look at the smart contract code [here](https://github.com/MythicalGames/dgoods).
 
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
 - [Node.js](https://nodejs.org/en/)
 - [Docker](https://www.docker.com/)
-- [Eosio](https://developers.eos.io/welcome/latest/getting-started-guide/local-development-environment/index)
+- [Leap](https://github.com/AntelopeIO/leap/releases/tag/v4.0.4)
 - [Make](https://www.gnu.org/software/make/)
 
 ## Get started
 
 - Create you `.env` by running `cp .env.example .env`
-- Start the network with `make fast-run`. This will download the images if you don't have them and start the network
+- Start the network with `make pull-docker-images && source run.sh create_wallet && source run.sh genesis && source run.sh start_network bp 3`. This will download the images if you don't have them and start the network
 - Run the command `cleos get info` or check the link in the browser `http://127.0.0.1:8888/v1/chain/get_info`
 
-If you run the command `cleos get info` or go to `http://127.0.0.1:8888/v1/chain/get_info` and get information like the following it is because you already have the environment ready to work.
+If you run the command `cleos get info` or go to `http://127.0.0.1:8888/v1/chain/get_info` and if the information you received is like the following then you are ready to go.
 
-```
-{"server_version":"e57a1eab","chain_id":"981453d176ddca32aa278ff7b8af9bf4632de00ab49db273db03115705d90c5a","head_block_num":66,"last_irreversible_block_num":65,"last_irreversible_block_id":"00000041fcc36403c71cebfc95810f610412b474f60735639fcaa2d241fe5ffa","head_block_id":"00000042a08478812c642d311f5ff22b9212559eeb9ee1042925742d8b46dd7f","head_block_time":"2021-07-08T05:48:45.500","head_block_producer":"eosio","virtual_block_cpu_limit":213407,"virtual_block_net_limit":1118998,"block_cpu_limit":199900,"block_net_limit":1048576,"server_version_string":"v2.0.12","fork_db_head_block_num":66,"fork_db_head_block_id":"00000042a08478812c642d311f5ff22b9212559eeb9ee1042925742d8b46dd7f","server_full_version_string":"v2.0.12-e57a1eab619edffc25afa7eceb05a01ab575c34a"}
+```sh
+{
+    "server_version":"e57a1eab","chain_id":"981453d176ddca32aa278ff7b8af9bf4632de00ab49db273db03115705d90c5a","head_block_num":66,"last_irreversible_block_num":65,"last_irreversible_block_id":"00000041fcc36403c71cebfc95810f610412b474f60735639fcaa2d241fe5ffa","head_block_id":"00000042a08478812c642d311f5ff22b9212559eeb9ee1042925742d8b46dd7f","head_block_time":"2021-07-08T05:48:45.500","head_block_producer":"eosio","virtual_block_cpu_limit":213407,"virtual_block_net_limit":1118998,"block_cpu_limit":199900,"block_net_limit":1048576,"server_version_string":"v2.0.12","fork_db_head_block_num":66,"fork_db_head_block_id":"00000042a08478812c642d311f5ff22b9212559eeb9ee1042925742d8b46dd7f","server_full_version_string":"v2.0.12-e57a1eab619edffc25afa7eceb05a01ab575c34a"
+}
 ```
 
 **Note:** As it is a quick start, you can use the `.env.example` file with the key there provided.
 
 > Don't use these keys in production environments, since they are public and it's just to start easily. Also consider that you will need to import your `own keys` to your wallet or the one provided in the `.env.example` file.
 
-## Instructions for creating Libre Local Network image locally
+## Instructions for compiling Libre Local Network image locally
 
 To create the Docker image locally, you must run the following commands:
 
 - Clone the local Eos repository `https://github.com/edenia/libre-local`
 - Enter to the cloned repository folder `cd <path/libre-local>`
 - Create your `.env` file `cp .env.example .env`
-- Run the Dockerfile image `make run`, this will use the Dockerfiles to build the images and start the network according to the information in the nodes directory.
+- Run the Dockerfile image `make build-docker-images && source run.sh create_wallet && source run.sh genesis && source run.sh start_network bp 3`, this will use the Dockerfiles to build the images and start the network according to the information in the nodes directory.
 - Run the command `cleos get info` or check the link in the browser `http://127.0.0.1:8888/v1/chain/get_info`
 
-By this point, you already have the Libre Local Network image running locally.
+In this point, you already have the Libre Local Network image running locally.
 
 If you wish to use the Smart Contracts currently running on Libre Mainnet or Libre Testnet, you can use the following command in the root folder of the repository to set them up:
 
@@ -74,7 +65,7 @@ If you wish to use the Smart Contracts currently running on Libre Mainnet or Lib
 ./scripts/contracts.sh
 ```
 
-> **Note:** To run a modified version of the contracts, you can update them, get the wasm and put them in the `./wasm` folder with their respective contract names, reset the network and run the previous command.
+> **Note:** To run a modified version of the contracts, you can update them, get the wasm and put them in the `./wasm` folder with their respective contract name, reset the network and run the previous command.
 
 ## Setup Network
 
@@ -123,29 +114,24 @@ source run.sh start_network bp 5
 ```text title="./libre-local"
 /
 .
-├── .env.example
-├── .github
-│   ├── ISSUE_TEMPLATE
-│   └── workflows
-├── .gitignore
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
-├── docker-compose.yaml
+├── approve.json
 ├── makefile
 ├── nodes
-│   ├── bp2
-│   ├── bp3
-│   ├── bp4
-│   ├── bp5
+│   ├── bp
 │   └── genesis
+├── run.sh
 ├── scripts
 │   ├── contracts.sh
 │   └── optional.sh
 └── wasm
     ├── dao-contract
+    ├── inscription-contract
     ├── libre-referrals
+    ├── ordinals-contract
     ├── staking-contract
     ├── swap-contract
     └── system-contracts
