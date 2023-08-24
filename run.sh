@@ -46,7 +46,7 @@ stop_network() {
 genesis() {
     rm secrets/*.priv secrets/*.pub
 
-    docker run -d --name genesis --network libre-network -p 8888:8888 -p 9876:9876 -p 9879:9879 \
+    docker run -d --name genesis --network libre-network -p 8888:8888 -p 8080:8080 -p 9876:9876 -p 9879:9879 \
     -e BP_NAME=genesis \
     -e INITIAL_CHAIN_ID=${INITIAL_CHAIN_ID} \
     -e TESTNET_EOSIO_PRIVATE_KEY=${TESTNET_EOSIO_PRIVATE_KEY} \
@@ -84,6 +84,14 @@ start_single_node() {
     -e TESTNET_NODE_PRIVATE_KEY=${TESTNET_NODE_PRIVATE_KEY} \
     -e TESTNET_NODE_PUBLIC_KEY=${TESTNET_NODE_PUBLIC_KEY} \
     eoscostarica506/libre-node:latest bash -c "./start.sh"
+}
+
+start_api_history() {
+    cd api-history/infra
+    docker-compose up -d
+    cd ../hyperion
+    docker-compose up -d
+    cd ..
 }
 
 create_network() {

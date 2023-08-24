@@ -109,6 +109,12 @@ source run.sh start_network bp 5
 ./scripts/contracts.sh
 ```
 
+5. Start Hyperion
+
+```sh
+source run.sh start_api_history
+```
+
 ## File structure
 
 ```text title="./libre-local"
