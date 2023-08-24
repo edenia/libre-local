@@ -91,7 +91,7 @@ start_api_history() {
     docker-compose up -d
     cd ../hyperion
     docker-compose up -d
-    cd ..
+    cd ../..
 }
 
 create_network() {
