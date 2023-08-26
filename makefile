@@ -2,6 +2,11 @@
 
 LATEST_TAG ?= latest
 
+pull-docker-images:
+	@echo "Running Local Libre Chain..."
+	@docker pull $(DOCKER_REGISTRY)/libre-node:$(LATEST_TAG)
+	@docker pull $(DOCKER_REGISTRY)/libre-genesis-node:$(LATEST_TAG)
+
 build-docker-images:
 	@echo "Building docker containers..."
 
